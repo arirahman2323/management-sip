@@ -6,7 +6,7 @@ import (
 	"net/http"
 
 	"github.com/arirahman2323/managment-sip/db"
-	"github.com/arirahman2323/managment-sip/handler/user"
+	"github.com/arirahman2323/managment-sip/routes"
 
 	_ "modernc.org/sqlite"
 
@@ -17,13 +17,13 @@ func main() {
 	database := db.Connect()
 	defer database.Close()
 
-	db.Migrate(database) // buat tabel
+	db.Migrate(database)
 
 	mux := http.NewServeMux()
-
-	mux.HandleFunc("/api/users", user.UsersHandler(database))
+	routes.SetupRoutes(mux, database)
 
 	handler := cors.Default().Handler(mux)
+
 	fmt.Println("Server running at http://localhost:8080")
 	log.Fatal(http.ListenAndServe(":8080", handler))
 }
