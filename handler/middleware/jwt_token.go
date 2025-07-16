@@ -3,12 +3,13 @@ package middleware
 import (
 	"context"
 	"net/http"
+	"os"
 	"strings"
 
 	"github.com/golang-jwt/jwt/v5"
 )
 
-var JwtSecret = []byte("RAHASIA-LOGIN-KAMU")
+var JwtSecret = []byte(os.Getenv("JWT_SECRET")) // ganti di production ya
 
 type contextKey string
 
@@ -42,7 +43,6 @@ func JWTAuth(next http.Handler) http.Handler {
 			return
 		}
 
-		// Masukkan user_id ke context
 		ctx := context.WithValue(r.Context(), UserIDKey, claims["user_id"])
 		next.ServeHTTP(w, r.WithContext(ctx))
 	})

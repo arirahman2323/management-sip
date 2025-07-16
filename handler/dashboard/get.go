@@ -7,23 +7,31 @@ import (
 	"github.com/arirahman2323/managment-sip/handler/middleware"
 )
 
-type Response struct {
-	Message string      `json:"message"`
-	UserID  interface{} `json:"user_id"`
-	Note    string      `json:"note"`
+// Struktur response bisa kamu sesuaikan lagi untuk kebutuhan grafik/statistik dashboard
+type DashboardData struct {
+	TotalUsers     int         `json:"total_users"`
+	TotalItems     int         `json:"total_items"`
+	RecentActivity []string    `json:"recent_activity"`
+	UserID         interface{} `json:"user_id"`
+	Message        string      `json:"message"`
+	Note           string      `json:"note"`
 }
 
-func Handler(dbDependency string) http.HandlerFunc {
+func DashboardHandler(db any) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		userID := r.Context().Value(middleware.UserIDKey)
 
-		response := Response{
-			Message: "Welcome to the dashboard!",
-			UserID:  userID,
-			Note:    "Kamu berhasil login dan token valid 🎉",
+		// Simulasi statistik yang nanti bisa kamu ambil dari database
+		data := DashboardData{
+			TotalUsers:     12,
+			TotalItems:     42,
+			RecentActivity: []string{"Login Admin", "Tambah Barang", "Cetak Laporan"},
+			UserID:         userID,
+			Message:        "Welcome to the dashboard!",
+			Note:           "Kamu berhasil login dan token valid 🎉",
 		}
 
 		w.Header().Set("Content-Type", "application/json")
-		json.NewEncoder(w).Encode(response)
+		json.NewEncoder(w).Encode(data)
 	}
 }
