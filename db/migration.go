@@ -32,6 +32,16 @@ func Migrate(db *sql.DB) {
 					updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
 				);`,
 		},
+		{
+			name: "unit_types",
+			query: `
+				CREATE TABLE IF NOT EXISTS unit_types (
+					id TEXT PRIMARY KEY,
+					name TEXT NOT NULL,
+					created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+					updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
+				);`,
+		},
 		// Tambahkan migrasi tabel lain di sini nanti
 	}
 

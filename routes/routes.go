@@ -11,6 +11,7 @@ import (
 	dbmigrate "github.com/arirahman2323/managment-sip/handler/db-migrate"
 	"github.com/arirahman2323/managment-sip/handler/itemType"
 	"github.com/arirahman2323/managment-sip/handler/middleware"
+	"github.com/arirahman2323/managment-sip/handler/unitType"
 	"github.com/arirahman2323/managment-sip/handler/user"
 )
 
@@ -35,6 +36,12 @@ func SetupRoutes(db *sql.DB) http.Handler {
 	protected.HandleFunc("/item-types", itemType.CreateItemType(db)).Methods("POST")
 	protected.HandleFunc("/item-types/{id}", itemType.UpdateItemType(db)).Methods("PUT")
 	protected.HandleFunc("/item-types/{id}", itemType.DeleteItemType(db)).Methods("DELETE")
+
+	// Unit types CRUD
+	protected.HandleFunc("/unit-types", unitType.GetAllUnitTypes(db)).Methods("GET")
+	protected.HandleFunc("/unit-types", unitType.CreateUnitType(db)).Methods("POST")
+	protected.HandleFunc("/unit-types/{id}", unitType.UpdateUnitType(db)).Methods("PUT")
+	protected.HandleFunc("/unit-types/{id}", unitType.DeleteUnitType(db)).Methods("DELETE")
 
 	return router
 }
