@@ -2,8 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "./pages/Auth/Login";
 import Register from "./pages/Auth/Register";
 import Dashboard from "./pages/Admin/Dashboard";
-import Product from "./pages/Admin/Product";
-
+import Index from "./pages/Admin/Product/Index";
 const App = () => {
   return (
     <div>
@@ -11,8 +10,8 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/dashboard" element={<Dashboard />}></Route>
-          <Route path="/product" element={<Product />}></Route>
+          <Route path="/Dashboard" element={<Dashboard />}></Route>
+          <Route path="/Index" element={<Index />}></Route> //Product Index
         </Routes>
       </Router>
     </div>

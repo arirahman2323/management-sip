@@ -8,10 +8,10 @@ const BlueLogo = () => {
       <img src={blue_logo} alt="SIP Logo" className="h-20 w-auto" />
       <div>
         <p className="font-semibold text-gray-800 text-sm leading-tight">
-          Sistem Informasi
+          Sytem Inventory
         </p>
         <p className="font-semibold text-gray-800 text-sm leading-tight">
-          Pencatatan
+          Product
         </p>
       </div>
     </div>

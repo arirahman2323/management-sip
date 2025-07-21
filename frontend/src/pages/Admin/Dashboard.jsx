@@ -20,6 +20,7 @@ import { GiProfit } from "react-icons/gi";
 import { FaCoins } from "react-icons/fa";
 import { IoFilterOutline } from "react-icons/io5";
 import { GrStatusWarning } from "react-icons/gr";
+import { BsRecycle } from "react-icons/bs";
 
 import {
   ArchiveBoxIcon,
@@ -128,6 +129,7 @@ const Dashboard = () => {
             title="Product Expired"
             subtitle="15 product has expired"
             products={productHasExpired}
+            icon={<BsRecycle />}
           />
         </div>
       </div>

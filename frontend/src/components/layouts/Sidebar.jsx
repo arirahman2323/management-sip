@@ -36,7 +36,7 @@ const Sidebar = ({ isOpen }) => {
         <h4 className="mt-6 px-6 font-semibold text-gray-600">Pages</h4>
         {/* Product */}
         <Link
-          to="/product"
+          to="/Index"
           className="flex items-center mt-4 py-2 px-6 font-semibold text-black hover:bg-indigo-600 hover:text-white"
         >
           <FaBoxOpen size={24} />
