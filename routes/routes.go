@@ -11,6 +11,7 @@ import (
 	dbmigrate "github.com/arirahman2323/managment-sip/handler/db-migrate"
 	"github.com/arirahman2323/managment-sip/handler/itemType"
 	"github.com/arirahman2323/managment-sip/handler/middleware"
+	"github.com/arirahman2323/managment-sip/handler/product"
 	"github.com/arirahman2323/managment-sip/handler/unitType"
 	"github.com/arirahman2323/managment-sip/handler/user"
 )
@@ -31,17 +32,23 @@ func SetupRoutes(db *sql.DB) http.Handler {
 
 	protected.HandleFunc("/dashboard", dashboard.DashboardHandler(db)).Methods("GET")
 
-	// Item types CRUD
+	// Item types
 	protected.HandleFunc("/item-types", itemType.GetAllItemTypes(db)).Methods("GET")
 	protected.HandleFunc("/item-types", itemType.CreateItemType(db)).Methods("POST")
 	protected.HandleFunc("/item-types/{id}", itemType.UpdateItemType(db)).Methods("PUT")
 	protected.HandleFunc("/item-types/{id}", itemType.DeleteItemType(db)).Methods("DELETE")
 
-	// Unit types CRUD
+	// Unit types
 	protected.HandleFunc("/unit-types", unitType.GetAllUnitTypes(db)).Methods("GET")
 	protected.HandleFunc("/unit-types", unitType.CreateUnitType(db)).Methods("POST")
 	protected.HandleFunc("/unit-types/{id}", unitType.UpdateUnitType(db)).Methods("PUT")
 	protected.HandleFunc("/unit-types/{id}", unitType.DeleteUnitType(db)).Methods("DELETE")
+
+	// Product
+	protected.HandleFunc("/product", product.GetAllProducts(db)).Methods("GET")
+	protected.HandleFunc("/product", product.CreateProduct(db)).Methods("POST")
+	protected.HandleFunc("/product/{id}", product.UpdateProduct(db)).Methods("PUT")
+	protected.HandleFunc("/product/{id}", product.DeleteProduct(db)).Methods("DELETE")
 
 	return router
 }
