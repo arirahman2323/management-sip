@@ -13,6 +13,9 @@ export const products = [
     tglInput: "15 May 2021",
     tglExpired: "15 May 2021",
     warrantyPeriod: 3,
+    profit: 10000,
+    sumPrice: 30000,
+    sumProfit: 50000,
   },
   {
     id: 2,
@@ -28,6 +31,9 @@ export const products = [
     tglInput: "15 May 2021",
     tglExpired: "15 May 2021",
     warrantyPeriod: 2,
+    profit: 10000,
+    sumPrice: 30000,
+    sumProfit: 50000,
   },
   {
     id: 3,
@@ -43,6 +49,9 @@ export const products = [
     tglInput: "15 May 2021",
     tglExpired: "15 May 2021",
     warrantyPeriod: 2,
+    profit: 10000,
+    sumPrice: 30000,
+    sumProfit: 50000,
   },
   {
     id: 4,
@@ -58,6 +67,9 @@ export const products = [
     tglInput: "15 May 2021",
     tglExpired: "15 May 2021",
     warrantyPeriod: 2,
+    profit: 10200,
+    sumPrice: 30000,
+    sumProfit: 50000,
   },
   {
     id: 5,
@@ -73,6 +85,9 @@ export const products = [
     tglInput: "15 May 2021",
     tglExpired: "15 May 2021",
     warrantyPeriod: 2,
+    profit: 20000,
+    sumPrice: 30000,
+    sumProfit: 50000,
   },
   {
     id: 6,
@@ -88,5 +103,8 @@ export const products = [
     tglInput: "15 May 2021",
     tglExpired: "15 May 2021",
     warrantyPeriod: 2,
+    profit: 20000,
+    sumPrice: 30000,
+    sumProfit: 50000,
   },
 ];

@@ -7,7 +7,7 @@ export const columns = (onDelete, onEdit) => [
     name: "id",
     selector: (row) => row.id,
     sortable: true,
-    width: "60px", // Lebar tetap untuk kolom pendek
+    width: "60px",
   },
   {
     name: <CustomHeader title="Item Code" />,
@@ -20,7 +20,7 @@ export const columns = (onDelete, onEdit) => [
     selector: (row) => row.name,
     sortable: true,
     minWidth: "250px",
-    grow: 2, // Beri porsi ruang paling besar
+    grow: 2,
   },
   {
     name: <CustomHeader title="Category" />,
