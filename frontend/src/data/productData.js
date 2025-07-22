@@ -6,8 +6,8 @@ export const products = [
     category: "Allosaurus",
     unit: "Allosaurus",
     stock: 3,
-    reorder: 3, // <-- Angka jumlah pesanan
-    statusReorder: "Yes", // <-- Status terpisah
+    reorder: 3,
+    statusReorder: "Yes",
     purchasePrice: 20000,
     sellPrice: 20000,
     tglInput: "15 May 2021",
@@ -21,8 +21,8 @@ export const products = [
     category: "Allosaurus",
     unit: "Allosaurus",
     stock: 3,
-    reorder: 0, // <-- Angka jumlah pesanan
-    statusReorder: "No", // <-- Status terpisah
+    reorder: 0,
+    statusReorder: "No",
     purchasePrice: 20000,
     sellPrice: 20000,
     tglInput: "15 May 2021",
@@ -36,8 +36,8 @@ export const products = [
     category: "Allosaurus",
     unit: "Allosaurus",
     stock: 3,
-    reorder: 0, // <-- Angka jumlah pesanan
-    statusReorder: "No", // <-- Status terpisah
+    reorder: 0,
+    statusReorder: "No",
     purchasePrice: 20000,
     sellPrice: 20000,
     tglInput: "15 May 2021",
@@ -51,7 +51,7 @@ export const products = [
     category: "Allosaurus",
     unit: "Allosaurus",
     stock: 3,
-    reorder: 0, // <-- Angka jumlah pesanan
+    reorder: 0,
     statusReorder: "No", // <-- Status terpisah
     purchasePrice: 20000,
     sellPrice: 20000,
@@ -66,8 +66,8 @@ export const products = [
     category: "Allosaurus",
     unit: "Allosaurus",
     stock: 3,
-    reorder: 0, // <-- Angka jumlah pesanan
-    statusReorder: "No", // <-- Status terpisah
+    reorder: 0,
+    statusReorder: "No",
     purchasePrice: 20000,
     sellPrice: 20000,
     tglInput: "15 May 2021",
@@ -81,8 +81,8 @@ export const products = [
     category: "Allosaurus",
     unit: "Allosaurus",
     stock: 3,
-    reorder: 0, // <-- Angka jumlah pesanan
-    statusReorder: "No", // <-- Status terpisah
+    reorder: 0,
+    statusReorder: "No",
     purchasePrice: 20000,
     sellPrice: 20000,
     tglInput: "15 May 2021",

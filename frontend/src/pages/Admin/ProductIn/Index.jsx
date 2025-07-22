@@ -1,19 +1,15 @@
 import React, { useState, useEffect } from "react";
 import DashboardLayout from "../../../components/layouts/DashboardLayout";
 import DataTable from "react-data-table-component";
-import { products as initialProducts } from "../../../data/productData";
 import SearchInput from "../../../components/layouts/ProductSearch";
-import { columns as defineColumns } from "../Product/Column";
-import Create from "../Product/Create";
-import Delete from "../Product/Delete";
-import Edit from "../Product/Edit";
+import { products as initialProducts } from "../../../data/productData";
+import { columns } from "./Column"; // Pastikan impor kolomnya benar
+import Create from "./Create";
 
 const Index = () => {
-  const [data, setData] = useState(initialProducts);
   const [searchQuery, setSearchQuery] = useState("");
+  const [data, setData] = useState(initialProducts);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [productToDelete, setProductToDelete] = useState(null);
-  const [editingProduct, setEditingProduct] = useState(null);
 
   // Searching Produk
   useEffect(() => {
@@ -23,36 +19,13 @@ const Index = () => {
     setData(result);
   }, [searchQuery]);
 
-  // Delete Produk
-  const handleDeleteClick = (product) => {
-    setProductToDelete(product);
-  };
-  const handleConfirmDelete = () => {
-    if (productToDelete) {
-      setData(data.filter((item) => item.id !== productToDelete.id));
-      setProductToDelete(null);
-    }
-  };
-
-  // Edit Produk
-  const handleEditClick = (product) => {
-    setEditingProduct(product);
-  };
-
-  // Edit and Delete
-  const columns = defineColumns(handleDeleteClick, handleEditClick);
-
   return (
     <div>
-      <div
-        className={`transition-all duration-300 ${
-          isModalOpen ? "blur-sm" : ""
-        }`}
-      >
+      <div>
         <DashboardLayout>
           <div className="p-6 min-h-full">
             <div className="flex justify-between items-center mb-6">
-              <h1 className="text-4xl font-bold text-white">Product</h1>
+              <h1 className="text-4xl font-bold text-white">Product In</h1>
             </div>
 
             <div className="flex flex-col bg-white p-4 rounded-lg shadow-md">
@@ -68,7 +41,7 @@ const Index = () => {
                   onClick={() => setIsModalOpen(true)}
                   className="cursor-pointer bg-blue-600 text-white font-semibold px-4 py-2 rounded-lg shadow-md hover:bg-blue-700 whitespace-nowrap"
                 >
-                  + Add Product
+                  + Add Product In
                 </button>
               </div>
 
@@ -84,16 +57,6 @@ const Index = () => {
         </DashboardLayout>
       </div>
       <Create isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
-      <Delete
-        isOpen={!!productToDelete}
-        onClose={() => setProductToDelete(null)}
-        onConfirm={handleConfirmDelete}
-      />
-      <Edit
-        isOpen={!!editingProduct}
-        onClose={() => setEditingProduct(null)}
-        productData={editingProduct}
-      />
     </div>
   );
 };
