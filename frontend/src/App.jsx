@@ -5,6 +5,7 @@ import Dashboard from "./pages/Admin/Dashboard";
 import ProductIndex from "./pages/Admin/Product/Index";
 import ProductIn from "./pages/Admin/ProductIn/Index";
 import ProductOut from "./pages/Admin/ProductOut/Index";
+import Report from "./pages/Admin/Report/Index";
 const App = () => {
   return (
     <div>
@@ -19,6 +20,7 @@ const App = () => {
           <Route path="/product" element={<ProductIndex />}></Route>
           <Route path="/product-in" element={<ProductIn />}></Route>
           <Route path="/product-out" element={<ProductOut />}></Route>
+          <Route path="/report" element={<Report />}></Route>
         </Routes>
       </Router>
     </div>

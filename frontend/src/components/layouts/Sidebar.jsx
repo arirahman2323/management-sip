@@ -40,7 +40,7 @@ const Sidebar = ({ isOpen }) => {
           className="flex items-center mt-4 py-2 px-6 font-semibold text-black hover:bg-indigo-600 hover:text-white"
         >
           <FaBoxOpen size={24} />
-          <span className="mx-4 font-medium">Product</span>
+          <span className="mx-4 font-medium">Produk</span>
         </Link>
         {/* Product In */}
         <Link
@@ -48,7 +48,7 @@ const Sidebar = ({ isOpen }) => {
           className="flex items-center mt-4 py-2 px-6 font-semibold text-black hover:bg-indigo-600 hover:text-white"
         >
           <PiBoxArrowDownFill size={24} />
-          <span className="mx-4 font-medium">Product In</span>
+          <span className="mx-4 font-medium">Barang Masuk</span>
         </Link>
         {/* Product out */}
         <Link
@@ -56,7 +56,7 @@ const Sidebar = ({ isOpen }) => {
           className="flex items-center mt-4 py-2 px-6 font-semibold text-black hover:bg-indigo-600 hover:text-white"
         >
           <PiBoxArrowUpFill size={24} />
-          <span className="mx-4 font-medium">Product Out</span>
+          <span className="mx-4 font-medium">Barang Keluar</span>
         </Link>
         {/* Laporan */}
         <Link
@@ -72,7 +72,7 @@ const Sidebar = ({ isOpen }) => {
           className="flex items-center mt-4 py-2 px-6 font-semibold text-black hover:bg-indigo-600 hover:text-white"
         >
           <FiLogOut size={24} />
-          <span className="mx-4 font-medium">Log out</span>
+          <span className="mx-4 font-medium">Keluar</span>
         </Link>
       </nav>
     </div>

@@ -16,6 +16,8 @@ export const products = [
     profit: 10000,
     sumPrice: 30000,
     sumProfit: 50000,
+    productIn: 10,
+    productOut: 5,
   },
   {
     id: 2,
@@ -34,6 +36,8 @@ export const products = [
     profit: 10000,
     sumPrice: 30000,
     sumProfit: 50000,
+    productIn: 10,
+    productOut: 5,
   },
   {
     id: 3,
@@ -52,6 +56,8 @@ export const products = [
     profit: 10000,
     sumPrice: 30000,
     sumProfit: 50000,
+    productIn: 10,
+    productOut: 5,
   },
   {
     id: 4,
@@ -70,6 +76,8 @@ export const products = [
     profit: 10200,
     sumPrice: 30000,
     sumProfit: 50000,
+    productIn: 10,
+    productOut: 5,
   },
   {
     id: 5,
@@ -88,6 +96,8 @@ export const products = [
     profit: 20000,
     sumPrice: 30000,
     sumProfit: 50000,
+    productIn: 10,
+    productOut: 5,
   },
   {
     id: 6,
@@ -106,5 +116,7 @@ export const products = [
     profit: 20000,
     sumPrice: 30000,
     sumProfit: 50000,
+    productIn: 10,
+    productOut: 5,
   },
 ];
