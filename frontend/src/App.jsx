@@ -16,7 +16,7 @@ const App = () => {
           <Route path="/register" element={<Register />} />
 
           {/* Admin */}
-          <Route path="/Dashboard" element={<Dashboard />}></Route>
+          <Route path="/dashboard" element={<Dashboard />}></Route>
           <Route path="/product" element={<ProductIndex />}></Route>
           <Route path="/product-in" element={<ProductIn />}></Route>
           <Route path="/product-out" element={<ProductOut />}></Route>
