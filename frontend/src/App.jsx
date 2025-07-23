@@ -6,6 +6,8 @@ import ProductIndex from "./pages/Admin/Product/Index";
 import ProductIn from "./pages/Admin/ProductIn/Index";
 import ProductOut from "./pages/Admin/ProductOut/Index";
 import Report from "./pages/Admin/Report/Index";
+import ProductWillExpired from "./pages/Admin/ProductWillExpired/Index";
+import ProductExpired from "./pages/Admin/ProductExpired/Index";
 const App = () => {
   return (
     <div>
@@ -21,6 +23,11 @@ const App = () => {
           <Route path="/product-in" element={<ProductIn />}></Route>
           <Route path="/product-out" element={<ProductOut />}></Route>
           <Route path="/report" element={<Report />}></Route>
+          <Route
+            path="/product-will-expired"
+            element={<ProductWillExpired />}
+          ></Route>
+          <Route path="/product-expired" element={<ProductExpired />}></Route>
         </Routes>
       </Router>
     </div>

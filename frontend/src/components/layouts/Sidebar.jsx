@@ -21,7 +21,7 @@ const Sidebar = ({ isOpen }) => {
       </div>
 
       {/* Menu */}
-      <nav className="mt-2 flex-1">
+      <nav className="mt-2 flex-1 overflow-y-auto">
         {/* Home */}
         <h4 className="px-6 font-semibold text-gray-600">Home</h4>
         <Link
@@ -57,6 +57,38 @@ const Sidebar = ({ isOpen }) => {
         >
           <PiBoxArrowUpFill size={24} />
           <span className="mx-4 font-medium">Barang Keluar</span>
+        </Link>
+        {/* Product Will Expired */}
+        <Link
+          to="/product-will-expired"
+          className="flex items-center mt-4 py-2 px-6 font-semibold text-black hover:bg-indigo-600 hover:text-white"
+        >
+          <PiBoxArrowUpFill size={24} />
+          <span className="mx-4 font-medium">Barang mau Kadaluarsa</span>
+        </Link>
+        {/* Product Expired */}
+        <Link
+          to="/product-expired"
+          className="flex items-center mt-4 py-2 px-6 font-semibold text-black hover:bg-indigo-600 hover:text-white"
+        >
+          <PiBoxArrowUpFill size={24} />
+          <span className="mx-4 font-medium">Barang Kadaluarsa</span>
+        </Link>
+        {/* Product Order */}
+        <Link
+          to="/product-order"
+          className="flex items-center mt-4 py-2 px-6 font-semibold text-black hover:bg-indigo-600 hover:text-white"
+        >
+          <PiBoxArrowUpFill size={24} />
+          <span className="mx-4 font-medium">Pesanan Barang</span>
+        </Link>
+        {/* Product Arrived */}
+        <Link
+          to="/product-out"
+          className="flex items-center mt-4 py-2 px-6 font-semibold text-black hover:bg-indigo-600 hover:text-white"
+        >
+          <PiBoxArrowUpFill size={24} />
+          <span className="mx-4 font-medium">Barang Tiba</span>
         </Link>
         {/* Laporan */}
         <Link
