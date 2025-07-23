@@ -10,6 +10,7 @@ import ProductWillExpired from "./pages/Admin/ProductWillExpired/Index";
 import ProductExpired from "./pages/Admin/ProductExpired/Index";
 import ProductOrder from "./pages/Admin/ProductOrder/Index";
 import ProductArrived from "./pages/Admin/ProductArrived/Index";
+import Logout from "./pages/Auth/Logout";
 const App = () => {
   return (
     <div>
@@ -18,6 +19,7 @@ const App = () => {
           {/* Auth */}
           <Route path="/" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/logout" element={<Logout />} />
 
           {/* Admin */}
           <Route path="/dashboard" element={<Dashboard />}></Route>
