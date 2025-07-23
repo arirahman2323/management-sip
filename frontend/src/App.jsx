@@ -8,6 +8,7 @@ import ProductOut from "./pages/Admin/ProductOut/Index";
 import Report from "./pages/Admin/Report/Index";
 import ProductWillExpired from "./pages/Admin/ProductWillExpired/Index";
 import ProductExpired from "./pages/Admin/ProductExpired/Index";
+import ProductOrder from "./pages/Admin/ProductOrder/Index";
 const App = () => {
   return (
     <div>
@@ -28,6 +29,7 @@ const App = () => {
             element={<ProductWillExpired />}
           ></Route>
           <Route path="/product-expired" element={<ProductExpired />}></Route>
+          <Route path="/product-order" element={<ProductOrder />}></Route>
         </Routes>
       </Router>
     </div>
