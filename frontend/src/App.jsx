@@ -9,6 +9,7 @@ import Report from "./pages/Admin/Report/Index";
 import ProductWillExpired from "./pages/Admin/ProductWillExpired/Index";
 import ProductExpired from "./pages/Admin/ProductExpired/Index";
 import ProductOrder from "./pages/Admin/ProductOrder/Index";
+import ProductArrived from "./pages/Admin/ProductArrived/Index";
 const App = () => {
   return (
     <div>
@@ -30,6 +31,7 @@ const App = () => {
           ></Route>
           <Route path="/product-expired" element={<ProductExpired />}></Route>
           <Route path="/product-order" element={<ProductOrder />}></Route>
+          <Route path="/product-arrived" element={<ProductArrived />}></Route>
         </Routes>
       </Router>
     </div>

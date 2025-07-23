@@ -1,6 +1,7 @@
 import React from "react";
 import { PencilIcon, TrashIcon } from "@heroicons/react/24/solid";
 import CustomHeader from "../../../components/tables/CustomHeader";
+import { LuArrowRightLeft } from "react-icons/lu";
 
 export const columns = (onEdit) => [
   {
@@ -59,7 +60,7 @@ export const columns = (onEdit) => [
           onClick={() => onEdit(row)}
           className="p-2 bg-yellow-400 text-white rounded-md hover:bg-yellow-500 shadow-md cursor-pointer"
         >
-          <PencilIcon className="h-4 w-4" />
+          <LuArrowRightLeft className="h-4 w-4" />
         </button>
       </div>
     ),

@@ -1,9 +1,10 @@
 import React from "react";
 import { PencilIcon, TrashIcon } from "@heroicons/react/24/solid";
 import CustomHeader from "../../../components/tables/CustomHeader";
-import { LuArrowRightLeft } from "react-icons/lu";
+import { FaCheckSquare } from "react-icons/fa";
+import { FaRegCheckSquare } from "react-icons/fa";
 
-export const columns = (onEdit, onDelete) => [
+export const columns = (onCheck) => [
   {
     name: "id",
     selector: (row) => row.id,
@@ -54,22 +55,21 @@ export const columns = (onEdit, onDelete) => [
   },
   {
     name: "ACTION",
-    cell: (row) => (
-      <div className="flex items-center gap-2">
+    cell: (row) =>
+      // Gunakan conditional rendering di sini
+      row.hasArrived ? (
+        // Jika sudah datang, tampilkan ikon tercentang (tidak bisa diklik)
+        <FaCheckSquare className="h-5 w-5 text-green-500" />
+      ) : (
+        // Jika belum, tampilkan tombol dengan ikon belum tercentang
         <button
-          onClick={() => onEdit(row)}
-          className="p-2 bg-yellow-400 text-white rounded-md hover:bg-yellow-500 shadow-md cursor-pointer"
+          onClick={() => onCheck(row)} // Panggil handler saat diklik
+          className="p-2 text-blue-600 rounded-md hover:text-blue-800 cursor-pointer"
         >
-          <LuArrowRightLeft className="h-4 w-4" />
+          <FaRegCheckSquare className="h-5 w-5" />
         </button>
-        <button
-          onClick={() => onDelete(row)}
-          className="p-2 bg-red-600 text-white rounded-md hover:bg-red-700 shadow-md cursor-pointer"
-        >
-          <TrashIcon className="h-4 w-4" />
-        </button>
-      </div>
-    ),
+      ),
+    center: true, // Posisikan ikon di tengah
     width: "100px",
   },
 ];
