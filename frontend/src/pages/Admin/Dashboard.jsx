@@ -14,13 +14,20 @@ import StatCard from "../../components/cards/StatCard";
 import BarChart from "../../components/charts/BarChart";
 import DoughnutChart from "../../components/charts/DoughnutChart";
 import ProductTable from "../../components/tables/ProductTable";
-import { productWillExpire, productHasExpired } from "../../data/data";
+import {
+  productWillExpire,
+  productHasExpired,
+  productArrived,
+  productOrder,
+} from "../../data/data";
 import { FaHandHoldingUsd } from "react-icons/fa";
 import { GiProfit } from "react-icons/gi";
 import { FaCoins } from "react-icons/fa";
 import { IoFilterOutline } from "react-icons/io5";
 import { GrStatusWarning } from "react-icons/gr";
 import { BsRecycle } from "react-icons/bs";
+import { IoCartSharp } from "react-icons/io5";
+import { BsCartCheckFill } from "react-icons/bs";
 
 import {
   ArchiveBoxIcon,
@@ -120,16 +127,32 @@ const Dashboard = () => {
         {/* Product Tables */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <ProductTable
-            title="Product Will Expired"
-            subtitle="10 product will expired"
+            title="Produk akan kadaluarsa"
+            subtitle="10 produk akan kadaluarsa"
             products={productWillExpire}
-            icon={<GrStatusWarning />}
+            icon={<GrStatusWarning className="h-6 w-6 text-orange-500" />}
+            detail="/product-will-expired"
           />
           <ProductTable
-            title="Product Expired"
-            subtitle="15 product has expired"
+            title="Produk kadaluarsa"
+            subtitle="15 produk kadaluarsa"
             products={productHasExpired}
-            icon={<BsRecycle />}
+            icon={<BsRecycle className="h-6 w-6 text-red-500" />}
+            detail="/product-expired"
+          />
+          <ProductTable
+            title="Barang dipesan"
+            subtitle="20 produk dipesan"
+            products={productOrder}
+            icon={<IoCartSharp className="h-6 w-6 text-green-500" />}
+            detail="/product-order"
+          />
+          <ProductTable
+            title="Barang sampai"
+            subtitle="20 produk sampai"
+            products={productArrived}
+            icon={<BsCartCheckFill className="h-6 w-6 text-orange-500" />}
+            detail="/product-arrived"
           />
         </div>
       </div>

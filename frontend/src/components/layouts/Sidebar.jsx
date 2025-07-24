@@ -57,7 +57,7 @@ const Sidebar = ({ isOpen }) => {
           {/* Product */}
           <Link
             to="/product"
-            className="flex items-center mt-4 py-2 px-6 font-semibold text-black hover:bg-indigo-600 hover:text-white"
+            className="flex items-center mt-4 py-2 px-6 font-semibold text-black hover:bg-indigo-500 hover:text-white rounded-xl"
           >
             <FaBoxOpen size={24} />
             <span className="mx-4 font-medium">Produk</span>
@@ -65,7 +65,7 @@ const Sidebar = ({ isOpen }) => {
           {/* Product In */}
           <Link
             to="/product-in"
-            className="flex items-center mt-4 py-2 px-6 font-semibold text-black hover:bg-indigo-600 hover:text-white"
+            className="flex items-center mt-4 py-2 px-6 font-semibold text-black hover:bg-indigo-500 hover:text-white rounded-xl"
           >
             <PiBoxArrowDownFill size={24} />
             <span className="mx-4 font-medium">Barang Masuk</span>
@@ -73,7 +73,7 @@ const Sidebar = ({ isOpen }) => {
           {/* Product out */}
           <Link
             to="/product-out"
-            className="flex items-center mt-4 py-2 px-6 font-semibold text-black hover:bg-indigo-600 hover:text-white"
+            className="flex items-center mt-4 py-2 px-6 font-semibold text-black hover:bg-indigo-500 hover:text-white rounded-xl"
           >
             <PiBoxArrowUpFill size={24} />
             <span className="mx-4 font-medium">Barang Keluar</span>
@@ -81,7 +81,7 @@ const Sidebar = ({ isOpen }) => {
           {/* Product Will Expired */}
           <Link
             to="/product-will-expired"
-            className="flex items-center mt-4 py-2 px-6 font-semibold text-black hover:bg-indigo-600 hover:text-white"
+            className="flex items-center mt-4 py-2 px-6 font-semibold text-black hover:bg-indigo-500 hover:text-white rounded-xl"
           >
             <IoIosWarning size={30} />
             <span className="mx-4 font-medium">Barang Akan Kadaluarsa</span>
@@ -89,7 +89,7 @@ const Sidebar = ({ isOpen }) => {
           {/* Product Expired */}
           <Link
             to="/product-expired"
-            className="flex items-center mt-4 py-2 px-6 font-semibold text-black hover:bg-indigo-600 hover:text-white"
+            className="flex items-center mt-4 py-2 px-6 font-semibold text-black hover:bg-indigo-500 hover:text-white rounded-xl"
           >
             <FaRecycle size={30} />
             <span className="mx-4 font-medium">Barang Sudah Kadaluarsa</span>
@@ -97,7 +97,7 @@ const Sidebar = ({ isOpen }) => {
           {/* Product Order */}
           <Link
             to="/product-order"
-            className="flex items-center mt-4 py-2 px-6 font-semibold text-black hover:bg-indigo-600 hover:text-white"
+            className="flex items-center mt-4 py-2 px-6 font-semibold text-black hover:bg-indigo-500 hover:text-white rounded-xl"
           >
             <IoCartSharp size={26} />
             <span className="mx-4 font-medium">Pesanan Barang</span>
@@ -105,7 +105,7 @@ const Sidebar = ({ isOpen }) => {
           {/* Product Arrived */}
           <Link
             to="/product-arrived"
-            className="flex items-center mt-4 py-2 px-6 font-semibold text-black hover:bg-indigo-600 hover:text-white"
+            className="flex items-center mt-4 py-2 px-6 font-semibold text-black hover:bg-indigo-500 hover:text-white rounded-xl"
           >
             <BsCartCheckFill size={24} />
             <span className="mx-4 font-medium">Pesanan Datang</span>
@@ -113,7 +113,7 @@ const Sidebar = ({ isOpen }) => {
           {/* Laporan */}
           <Link
             to="/report"
-            className="flex items-center mt-4 py-2 px-6 font-semibold text-black hover:bg-indigo-600 hover:text-white"
+            className="flex items-center mt-4 py-2 px-6 font-semibold text-black hover:bg-indigo-500 hover:text-white rounded-xl"
           >
             <FaRegFileAlt size={24} />
             <span className="mx-4 font-medium">Laporan</span>
@@ -121,7 +121,7 @@ const Sidebar = ({ isOpen }) => {
           {/* Logout */}
           <button
             onClick={openConfirmModal} // 8. Panggil fungsi untuk buka modal
-            className="cursor-pointer flex items-center w-full text-left mt-4 py-2 px-6 font-semibold text-black hover:bg-indigo-600 hover:text-white"
+            className="cursor-pointer flex items-center w-full text-left mt-4 py-2 px-6 font-semibold text-black hover:bg-indigo-500 hover:text-white rounded-xl"
           >
             <FiLogOut className="h-6 w-6" />
             <span className="mx-4 font-medium">Keluar</span>
