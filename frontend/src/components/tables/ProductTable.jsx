@@ -1,6 +1,7 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-const ProductTable = ({ title, subtitle, products, icon }) => {
+const ProductTable = ({ title, subtitle, products, icon, detail }) => {
   return (
     <div className="bg-white p-6 rounded-lg shadow-md">
       <div className="flex items-center mb-2">
@@ -17,9 +18,12 @@ const ProductTable = ({ title, subtitle, products, icon }) => {
           <h3 className="text-lg font-semibold">{title}</h3>
           <p className="text-sm text-gray-500">{subtitle}</p>
         </div>
-        <button className="ml-auto text-blue-500 font-semibold border border-blue-500 rounded-2xl px-4 py-1 pt-2 text-sm cursor-pointer hover:bg-blue-500 hover:text-white">
+        <Link
+          to={detail}
+          className="ml-auto text-blue-500 font-semibold border border-blue-500 rounded-2xl px-4 py-1 pt-2 text-sm cursor-pointer hover:bg-blue-500 hover:text-white"
+        >
           Detail
-        </button>
+        </Link>
       </div>
       <table className="w-full text-left">
         <thead className="border-b border-gray-100">

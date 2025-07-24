@@ -56,3 +56,18 @@ export const productHasExpired = [
   { name: "Lipstik", expired: "20 Agustus 2025", category: "Kosmetik" },
   { name: "Roti Aoka", expired: "20 Agustus 2025", category: "Makanan" },
 ];
+
+export const productOrder = [
+  { name: "Beng-Beng", expired: "20 Agustus 2025", category: "Makanan" },
+  { name: "Buku Tulis", expired: "20 Agustus 2025", category: "ATK" },
+  { name: "Sabun Mandi", expired: "20 Agustus 2025", category: "Sabun" },
+  { name: "Lipstik", expired: "20 Agustus 2025", category: "Kosmetik" },
+  { name: "Roti Aoka", expired: "20 Agustus 2025", category: "Makanan" },
+];
+export const productArrived = [
+  { name: "Beng-Beng", expired: "20 Agustus 2025", category: "Makanan" },
+  { name: "Buku Tulis", expired: "20 Agustus 2025", category: "ATK" },
+  { name: "Sabun Mandi", expired: "20 Agustus 2025", category: "Sabun" },
+  { name: "Lipstik", expired: "20 Agustus 2025", category: "Kosmetik" },
+  { name: "Roti Aoka", expired: "20 Agustus 2025", category: "Makanan" },
+];
