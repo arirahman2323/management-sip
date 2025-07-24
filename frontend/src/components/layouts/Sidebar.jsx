@@ -11,20 +11,33 @@ import { IoIosWarning } from "react-icons/io";
 import { FaRecycle } from "react-icons/fa";
 import { IoCartSharp } from "react-icons/io5";
 import { BsCartCheckFill } from "react-icons/bs";
-import Logout from "../../pages/Auth/Logout"; // 1. Import komponen Logout
+import Logout from "../../pages/Auth/Logout";
+import { MdOutlineSpaceDashboard } from "react-icons/md";
+import { LuBox } from "react-icons/lu";
+import { PiBoxArrowDown } from "react-icons/pi";
+import { PiBoxArrowUp } from "react-icons/pi";
+import { IoWarningOutline } from "react-icons/io5";
+import { TiWarningOutline } from "react-icons/ti";
+import { BsRecycle } from "react-icons/bs";
+import { PiRecycle } from "react-icons/pi";
+import { BsCartPlus } from "react-icons/bs";
+import { BsCartCheck } from "react-icons/bs";
+import { BsBox } from "react-icons/bs";
+import { SiHackthebox } from "react-icons/si";
+import { BsBoxSeam } from "react-icons/bs";
 
 const Sidebar = ({ isOpen }) => {
-  const [isModalOpen, setIsModalOpen] = useState(false); // 4. State untuk modal
-  const navigate = useNavigate(); // 5. Hook untuk navigasi
+  const linkItemStyle =
+    "flex items-center pl-4 mt-4 py-2 font-semibold text-black hover:bg-indigo-500 hover:text-white rounded-xl";
 
-  // 6. Fungsi untuk menangani logout
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const navigate = useNavigate();
+
   const handleLogout = () => {
-    // Di sini Anda bisa menambahkan logika hapus token/session
-    setIsModalOpen(false); // Tutup modal
-    navigate("/"); // Arahkan ke halaman login
+    setIsModalOpen(false);
+    navigate("/");
   };
 
-  // 7. Fungsi untuk membuka modal
   const openConfirmModal = () => {
     setIsModalOpen(true);
   };
@@ -44,87 +57,60 @@ const Sidebar = ({ isOpen }) => {
         <nav className="mt-2 flex-1 overflow-y-auto">
           {/* Home */}
           <h4 className="px-6 font-semibold text-gray-600">Home</h4>
-          <Link
-            to="/dashboard"
-            className="flex items-center mt-4 py-2 px-6 font-semibold text-black hover:bg-indigo-500 hover:text-white rounded-xl"
-          >
-            <MdDashboard size={24} />
-            <span className="mx-4 font-medium">Dashboard</span>
+          <Link to="/dashboard" className={linkItemStyle}>
+            <MdOutlineSpaceDashboard size={24} />
+            <span className="ml-6 font-medium">Dashboard</span>
           </Link>
 
           {/* Pages */}
           <h4 className="mt-6 px-6 font-semibold text-gray-600">Pages</h4>
           {/* Product */}
-          <Link
-            to="/product"
-            className="flex items-center mt-4 py-2 px-6 font-semibold text-black hover:bg-indigo-500 hover:text-white rounded-xl"
-          >
-            <FaBoxOpen size={24} />
-            <span className="mx-4 font-medium">Produk</span>
+          <Link to="/product" className={linkItemStyle}>
+            <BsBoxSeam size={24} />
+            <span className="ml-6 font-medium">Produk</span>
           </Link>
           {/* Product In */}
-          <Link
-            to="/product-in"
-            className="flex items-center mt-4 py-2 px-6 font-semibold text-black hover:bg-indigo-500 hover:text-white rounded-xl"
-          >
-            <PiBoxArrowDownFill size={24} />
-            <span className="mx-4 font-medium">Barang Masuk</span>
+          <Link to="/product-in" className={linkItemStyle}>
+            <PiBoxArrowDown size={24} />
+            <span className="ml-6 font-medium">Barang Masuk</span>
           </Link>
           {/* Product out */}
-          <Link
-            to="/product-out"
-            className="flex items-center mt-4 py-2 px-6 font-semibold text-black hover:bg-indigo-500 hover:text-white rounded-xl"
-          >
-            <PiBoxArrowUpFill size={24} />
-            <span className="mx-4 font-medium">Barang Keluar</span>
+          <Link to="/product-out" className={linkItemStyle}>
+            <PiBoxArrowUp size={24} />
+            <span className="ml-6 font-medium">Barang Keluar</span>
           </Link>
           {/* Product Will Expired */}
-          <Link
-            to="/product-will-expired"
-            className="flex items-center mt-4 py-2 px-6 font-semibold text-black hover:bg-indigo-500 hover:text-white rounded-xl"
-          >
-            <IoIosWarning size={30} />
-            <span className="mx-4 font-medium">Barang Akan Kadaluarsa</span>
+          <Link to="/product-will-expired" className={linkItemStyle}>
+            <TiWarningOutline size={24} />
+            <span className="ml-6 font-medium">Barang Akan Kadaluarsa</span>
           </Link>
           {/* Product Expired */}
-          <Link
-            to="/product-expired"
-            className="flex items-center mt-4 py-2 px-6 font-semibold text-black hover:bg-indigo-500 hover:text-white rounded-xl"
-          >
-            <FaRecycle size={30} />
-            <span className="mx-4 font-medium">Barang Sudah Kadaluarsa</span>
+          <Link to="/product-expired" className={linkItemStyle}>
+            <PiRecycle size={24} />
+            <span className="ml-6 font-medium">Barang Kadaluarsa</span>
           </Link>
           {/* Product Order */}
-          <Link
-            to="/product-order"
-            className="flex items-center mt-4 py-2 px-6 font-semibold text-black hover:bg-indigo-500 hover:text-white rounded-xl"
-          >
-            <IoCartSharp size={26} />
-            <span className="mx-4 font-medium">Pesanan Barang</span>
+          <Link to="/product-order" className={linkItemStyle}>
+            <BsCartPlus size={24} />
+            <span className="ml-6 font-medium">Pesanan Barang</span>
           </Link>
           {/* Product Arrived */}
-          <Link
-            to="/product-arrived"
-            className="flex items-center mt-4 py-2 px-6 font-semibold text-black hover:bg-indigo-500 hover:text-white rounded-xl"
-          >
-            <BsCartCheckFill size={24} />
-            <span className="mx-4 font-medium">Pesanan Datang</span>
+          <Link to="/product-arrived" className={linkItemStyle}>
+            <BsCartCheck size={24} />
+            <span className="ml-6 font-medium">Pesanan Datang</span>
           </Link>
           {/* Laporan */}
-          <Link
-            to="/report"
-            className="flex items-center mt-4 py-2 px-6 font-semibold text-black hover:bg-indigo-500 hover:text-white rounded-xl"
-          >
+          <Link to="/report" className={linkItemStyle}>
             <FaRegFileAlt size={24} />
-            <span className="mx-4 font-medium">Laporan</span>
+            <span className="ml-6 font-medium">Laporan</span>
           </Link>
           {/* Logout */}
           <button
-            onClick={openConfirmModal} // 8. Panggil fungsi untuk buka modal
-            className="cursor-pointer flex items-center w-full text-left mt-4 py-2 px-6 font-semibold text-black hover:bg-indigo-500 hover:text-white rounded-xl"
+            onClick={openConfirmModal}
+            className="cursor-pointer flex items-center w-full text-left mt-4 pl-4 py-2 mb-4 font-semibold text-black hover:bg-indigo-500 hover:text-white rounded-xl"
           >
             <FiLogOut className="h-6 w-6" />
-            <span className="mx-4 font-medium">Keluar</span>
+            <span className="ml-6 font-medium">Keluar</span>
           </button>
         </nav>
       </div>
