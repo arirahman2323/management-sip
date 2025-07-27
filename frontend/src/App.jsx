@@ -11,6 +11,7 @@ import ProductExpired from "./pages/Admin/ProductExpired/Index";
 import ProductOrder from "./pages/Admin/ProductOrder/Index";
 import ProductArrived from "./pages/Admin/ProductArrived/Index";
 import Logout from "./pages/Auth/Logout";
+import { Toaster } from "react-hot-toast";
 const App = () => {
   return (
     <div>
@@ -27,15 +28,13 @@ const App = () => {
           <Route path="/product-in" element={<ProductIn />}></Route>
           <Route path="/product-out" element={<ProductOut />}></Route>
           <Route path="/report" element={<Report />}></Route>
-          <Route
-            path="/product-will-expired"
-            element={<ProductWillExpired />}
-          ></Route>
+          <Route path="/product-will-expired" element={<ProductWillExpired />}></Route>
           <Route path="/product-expired" element={<ProductExpired />}></Route>
           <Route path="/product-order" element={<ProductOrder />}></Route>
           <Route path="/product-arrived" element={<ProductArrived />}></Route>
         </Routes>
       </Router>
+      <Toaster position="top-center" reverseOrder={false} />
     </div>
   );
 };
