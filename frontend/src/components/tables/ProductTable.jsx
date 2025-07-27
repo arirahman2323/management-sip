@@ -1,15 +1,22 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const ProductTable = ({ title, subtitle, products, icon, detail }) => {
+const ProductTable = ({
+  title,
+  subtitle,
+  products,
+  icon,
+  detail,
+  radiusColor,
+}) => {
   return (
     <div className="bg-white p-6 rounded-lg shadow-md">
       <div className="flex items-center mb-2">
         {/* Grup untuk Ikon dan Judul */}
-        <div className="flex items-center">
+        <div className={`flex items-center rounded-full ${radiusColor} p-1`}>
           {/* Wadah untuk menata ikon */}
           {icon && (
-            <div className="bg-blue-100 text-blue-500 rounded-full p-2">
+            <div className="bg-white text-blue-500 rounded-full p-2">
               {icon}
             </div>
           )}
@@ -20,7 +27,7 @@ const ProductTable = ({ title, subtitle, products, icon, detail }) => {
         </div>
         <Link
           to={detail}
-          className="ml-auto text-blue-500 font-semibold border border-blue-500 rounded-2xl px-4 py-1 pt-2 text-sm cursor-pointer hover:bg-blue-500 hover:text-white"
+          className="ml-auto bg-blue-100 text-blue-500 font-semibold rounded-sm px-4 py-1 pt-2 text-sm cursor-pointer hover:border-2 hover:bg-white hover:text-blue-600 transition-colors duration-200 ease-in-out"
         >
           Detail
         </Link>

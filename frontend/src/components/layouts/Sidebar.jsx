@@ -1,34 +1,21 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import BlueLogo from "../logo/BlueLogo";
-import { FaBoxOpen } from "react-icons/fa";
-import { PiBoxArrowDownFill } from "react-icons/pi";
-import { PiBoxArrowUpFill } from "react-icons/pi";
 import { FaRegFileAlt } from "react-icons/fa";
 import { FiLogOut } from "react-icons/fi";
-import { MdDashboard } from "react-icons/md";
-import { IoIosWarning } from "react-icons/io";
-import { FaRecycle } from "react-icons/fa";
-import { IoCartSharp } from "react-icons/io5";
-import { BsCartCheckFill } from "react-icons/bs";
 import Logout from "../../pages/Auth/Logout";
 import { MdOutlineSpaceDashboard } from "react-icons/md";
-import { LuBox } from "react-icons/lu";
 import { PiBoxArrowDown } from "react-icons/pi";
 import { PiBoxArrowUp } from "react-icons/pi";
-import { IoWarningOutline } from "react-icons/io5";
 import { TiWarningOutline } from "react-icons/ti";
-import { BsRecycle } from "react-icons/bs";
 import { PiRecycle } from "react-icons/pi";
 import { BsCartPlus } from "react-icons/bs";
 import { BsCartCheck } from "react-icons/bs";
-import { BsBox } from "react-icons/bs";
-import { SiHackthebox } from "react-icons/si";
 import { BsBoxSeam } from "react-icons/bs";
 
 const Sidebar = ({ isOpen }) => {
   const linkItemStyle =
-    "flex items-center pl-4 mt-4 py-2 font-semibold text-black hover:bg-indigo-500 hover:text-white rounded-xl";
+    "flex items-center pl-4 mt-4 py-2 font-semibold text-gray-700 hover:bg-indigo-600 hover:text-white rounded-md transition-colors duration-300";
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const navigate = useNavigate();
@@ -66,7 +53,7 @@ const Sidebar = ({ isOpen }) => {
           <h4 className="mt-6 px-6 font-semibold text-gray-600">Pages</h4>
           {/* Product */}
           <Link to="/product" className={linkItemStyle}>
-            <BsBoxSeam size={24} />
+            <BsBoxSeam size={22} />
             <span className="ml-6 font-medium">Produk</span>
           </Link>
           {/* Product In */}
@@ -107,7 +94,7 @@ const Sidebar = ({ isOpen }) => {
           {/* Logout */}
           <button
             onClick={openConfirmModal}
-            className="cursor-pointer flex items-center w-full text-left mt-4 pl-4 py-2 mb-4 font-semibold text-black hover:bg-indigo-500 hover:text-white rounded-xl"
+            className="cursor-pointer flex items-center w-full text-left mt-4 pl-4 py-2 mb-4 font-semibold text-gray-700 hover:bg-indigo-600 hover:text-white rounded-md transition-colors duration-300"
           >
             <FiLogOut className="h-6 w-6" />
             <span className="ml-6 font-medium">Keluar</span>
