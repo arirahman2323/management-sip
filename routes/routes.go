@@ -12,6 +12,8 @@ import (
 	"github.com/arirahman2323/managment-sip/handler/itemType"
 	"github.com/arirahman2323/managment-sip/handler/middleware"
 	"github.com/arirahman2323/managment-sip/handler/product"
+	"github.com/arirahman2323/managment-sip/handler/productIn"
+	productout "github.com/arirahman2323/managment-sip/handler/productOut"
 	"github.com/arirahman2323/managment-sip/handler/unitType"
 	"github.com/arirahman2323/managment-sip/handler/user"
 )
@@ -50,5 +52,13 @@ func SetupRoutes(db *sql.DB) http.Handler {
 	protected.HandleFunc("/product/{id}", product.UpdateProduct(db)).Methods("PUT")
 	protected.HandleFunc("/product/{id}", product.DeleteProduct(db)).Methods("DELETE")
 
+	// Product In
+	protected.HandleFunc("/product-in", productIn.GetAllProductsIn(db)).Methods("GET")
+	protected.HandleFunc("/product-in", productIn.CreateProductIn(db)).Methods("POST")
+	protected.HandleFunc("/product-in/{id}", productIn.UpdateProductIn(db)).Methods("PUT")
+	protected.HandleFunc("/product-in/{id}", productIn.DeleteProductIn(db)).Methods("DELETE")
+
+	// Product In
+	protected.HandleFunc("/product-out", productout.GetAllProductsOut(db)).Methods("GET")
 	return router
 }

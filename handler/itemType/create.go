@@ -3,8 +3,9 @@ package itemType
 import (
 	"database/sql"
 	"encoding/json"
-	"fmt"
 	"net/http"
+
+	"github.com/arirahman2323/managment-sip/utils"
 )
 
 func CreateItemType(db *sql.DB) http.HandlerFunc {
@@ -13,7 +14,6 @@ func CreateItemType(db *sql.DB) http.HandlerFunc {
 			Name string `json:"name"`
 		}
 
-		// Decode body
 		if err := json.NewDecoder(r.Body).Decode(&input); err != nil {
 			http.Error(w, "Invalid JSON", http.StatusBadRequest)
 			return
@@ -24,24 +24,17 @@ func CreateItemType(db *sql.DB) http.HandlerFunc {
 			return
 		}
 
-		// 🔢 Ambil jumlah data sekarang untuk bikin ID baru
-		var count int
-		err := db.QueryRow("SELECT COUNT(*) FROM item_types").Scan(&count)
+		newID, err := utils.GenerateNewID(db, "item_types", "ITM")
 		if err != nil {
-			http.Error(w, "Failed to count records", http.StatusInternalServerError)
+			http.Error(w, err.Error(), http.StatusInternalServerError)
 			return
 		}
-
-		newID := fmt.Sprintf("ITM-%03d", count+1)
-
-		// Insert ke DB
 		_, err = db.Exec("INSERT INTO item_types(id, name) VALUES (?, ?)", newID, input.Name)
 		if err != nil {
 			http.Error(w, err.Error(), http.StatusInternalServerError)
 			return
 		}
 
-		// Response
 		w.Header().Set("Content-Type", "application/json")
 		json.NewEncoder(w).Encode(map[string]interface{}{
 			"message": "Item type created successfully",

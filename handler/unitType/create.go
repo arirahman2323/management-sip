@@ -3,8 +3,9 @@ package unitType
 import (
 	"database/sql"
 	"encoding/json"
-	"fmt"
 	"net/http"
+
+	"github.com/arirahman2323/managment-sip/utils"
 )
 
 func CreateUnitType(db *sql.DB) http.HandlerFunc {
@@ -25,14 +26,11 @@ func CreateUnitType(db *sql.DB) http.HandlerFunc {
 		}
 
 		// 🔢 Ambil jumlah data sekarang untuk bikin ID baru
-		var count int
-		err := db.QueryRow("SELECT COUNT(*) FROM unit_types").Scan(&count)
+		newID, err := utils.GenerateNewID(db, "item_types", "UNT")
 		if err != nil {
-			http.Error(w, "Failed to count records", http.StatusInternalServerError)
+			http.Error(w, err.Error(), http.StatusInternalServerError)
 			return
 		}
-
-		newID := fmt.Sprintf("UNT-%03d", count+1)
 
 		// Insert ke DB
 		_, err = db.Exec("INSERT INTO unit_types(id, name) VALUES (?, ?)", newID, input.Name)
