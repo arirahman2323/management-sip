@@ -9,7 +9,7 @@ const UnitOut = ({ isOpen, onClose }) => {
       <div className="bg-white rounded-lg shadow-xl p-6 w-full max-w-lg">
         <div className="flex justify-between items-center border-b pb-3 mb-4">
           <h2 className="text-xl font-bold text-gray-800">
-            Form Barang Keluar (Unit)
+            Form Barang Masuk (Unit)
           </h2>
           <button
             onClick={onClose}
@@ -18,68 +18,62 @@ const UnitOut = ({ isOpen, onClose }) => {
             <XMarkIcon className="h-6 w-6 text-gray-600" />
           </button>
         </div>
-        {/* Scan */}
-        <div className="text-center p-6 border-dashed border-2 rounded-lg mb-4">
+
+        <div className="text-center p-6 rounded-lg mb-4 bg-gray-100 hover:border-2 hover:border-gray-500 cursor-pointer">
           <CameraIcon className="h-12 w-12 mx-auto text-gray-400" />
           <p className="mt-2 text-sm text-gray-600">Click to Scan Product</p>
         </div>
-        {/* Form Product */}
+
         <form className="space-y-4">
-          <div>
-            <label
-              htmlFor="kode-barang"
-              className="block text-sm font-medium text-gray-700"
-            >
-              Kode Barang
-            </label>
+          {/* Kode Barang */}
+          <div className="flex flex-col">
+            <label className="text-sm font-normal">Kode Barang</label>
             <input
-              type="text"
-              id="kode-barang"
-              placeholder="Masukkan Kode Barang Anda"
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
+              name="sku"
+              value="{formData.sku}"
+              onChange="{onChange}"
+              className="bg-gray-50 text-gray-500 text-sm p-3 rounded-lg focus:outline-gray-500"
+              placeholder="Masukan Kode Barang Anda"
             />
           </div>
-          <div>
-            <label
-              htmlFor="nama-barang"
-              className="block text-sm font-medium text-gray-700"
-            >
-              Nama Barang
-            </label>
+
+          {/* Nama Barang */}
+          <div className="flex flex-col">
+            <label className="text-sm font-normal">Nama Barang</label>
             <input
-              type="text"
-              id="nama-barang"
-              placeholder="Masukkan Nama Barang Anda"
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
+              name="name"
+              value="{formData.name}"
+              onChange="{onChange}"
+              className="bg-gray-50 text-gray-500 text-sm p-3 rounded-lg focus:outline-gray-500"
+              placeholder="Masukan Nama Barang Anda"
             />
           </div>
-          <div>
-            <label
-              htmlFor="jumlah"
-              className="block text-sm font-medium text-gray-700"
-            >
-              Jumlah
-            </label>
+
+          {/* Jumlah Barang */}
+          <div className="flex flex-col">
+            <label className="text-sm font-normal">Jumlah</label>
             <input
               type="number"
-              id="jumlah"
-              placeholder="50"
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
+              name="number"
+              value="{formData.name}"
+              onChange="{onChange}"
+              className="bg-gray-50 text-gray-500 text-sm p-3 rounded-lg focus:outline-gray-500"
+              placeholder="Jumlah"
             />
           </div>
         </form>
 
-        <div className="mt-6 flex justify-end gap-4 border-t pt-4">
+        <div className="flex justify-between gap-4 mt-4">
           <button
-            onClick={onClose}
             type="button"
-            className="bg-white border border-gray-300 text-gray-800 px-6 py-2 rounded-lg hover:bg-gray-50"
+            onClick={onClose}
+            className="px-4 w-full py-2 border rounded-md hover:bg-gray-100 cursor-pointer"
           >
             Cancel
           </button>
           <button
             type="submit"
-            className="bg-blue-600 text-white px-8 py-2 rounded-lg hover:bg-blue-700"
+            className="px-4 py-2 w-full bg-indigo-500 text-white rounded-md hover:bg-indigo-600 cursor-pointer"
           >
             Save
           </button>
