@@ -15,14 +15,12 @@ const columnNameMap = {
   total_unit: "Total Unit",
   unit_price: "Harga per Unit",
   expired_date: "Tanggal Expired",
-  created_at: "Dibuat Pada",
-  updated_at: "Diperbarui Pada",
 };
 
 export const generateColumns = (dataSample, onDelete, onEdit) => {
   if (!dataSample) return [];
 
-  const hiddenFields = ["deleted_at", "item_id", "unit_id"];
+  const hiddenFields = ["deleted_at", "item_id", "unit_id", "created_at", "updated_at"];
 
   const defaultColumns = Object.keys(dataSample)
     .filter((key) => !hiddenFields.includes(key))
@@ -31,6 +29,7 @@ export const generateColumns = (dataSample, onDelete, onEdit) => {
       selector: (row) => row[key],
       sortable: true,
       wrap: true,
+      width: "120px",
     }));
 
   const actionColumn = {

@@ -76,7 +76,11 @@ const Create = ({ isOpen, onClose }) => {
         toast.error("Produk dan kuantitas wajib diisi!");
         return;
       }
-      await axiosInstance.post(API_PATHS.PRODUCT_IN.CREATE_PRODUCT_IN, formData);
+      const payload = {
+        ...formData,
+        quantity: parseInt(formData.quantity, 10),
+      };
+      await axiosInstance.post(API_PATHS.PRODUCT_IN.CREATE_PRODUCT_IN, payload);
       toast.success("Barang berhasil ditambahkan");
       onClose();
     } catch (err) {
