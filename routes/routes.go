@@ -9,6 +9,7 @@ import (
 	"github.com/arirahman2323/managment-sip/handler/auth"
 	"github.com/arirahman2323/managment-sip/handler/dashboard"
 	dbmigrate "github.com/arirahman2323/managment-sip/handler/db-migrate"
+	filteryears "github.com/arirahman2323/managment-sip/handler/filterYears"
 	"github.com/arirahman2323/managment-sip/handler/itemType"
 	"github.com/arirahman2323/managment-sip/handler/middleware"
 	"github.com/arirahman2323/managment-sip/handler/product"
@@ -60,5 +61,9 @@ func SetupRoutes(db *sql.DB) http.Handler {
 
 	// Product In
 	protected.HandleFunc("/product-out", productout.GetAllProductsOut(db)).Methods("GET")
+
+	// filterYear
+	protected.HandleFunc("/filter-years", filteryears.GetFilterYears(db)).Methods("GET")
+
 	return router
 }
