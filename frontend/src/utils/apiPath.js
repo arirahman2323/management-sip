@@ -25,4 +25,11 @@ export const API_PATHS = {
     UPDATE_UNIT: (id) => `/api/unit-types/${id}`,
     DELETE_UNIT: (id) => `/api/unit-types/${id}`,
   },
+
+  PRODUCT_IN: {
+    GET_PRODUCT_IN: "/api/product-in",
+    CREATE_PRODUCT_IN: "/api/product-in",
+    UPDATE_PRODUCT_IN: (id) => `/api/product-in/${id}`,
+    DELETE_PRODUCT_IN: (id) => `/api/product-in/${id}`,
+  },
 };
