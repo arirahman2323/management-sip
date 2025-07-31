@@ -11,4 +11,7 @@ type Product struct {
 	Price     int    `json:"price"`
 	PriceSell int    `json:"price_sell"`
 	MinStock  int    `json:"min_stock"`
+	Stock     int    `json:"stock"`
+	CreatedAt string `json:"created_at"`
+	UpdatedAt string `json:"updated_at"`
 }

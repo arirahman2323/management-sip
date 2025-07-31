@@ -13,10 +13,19 @@ func GetAllProducts(db *sql.DB) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		rows, err := db.Query(`
 			SELECT 
-				p.id, p.sku, p.name,
-				p.item_id, it.name AS item_name,
-				p.unit_id, ut.name AS unit_name,
-				p.price, p.price_sell, p.min_stock
+				p.id, 
+				p.sku, 
+				p.name,
+				p.item_id, 
+				it.name AS item_name,
+				p.unit_id, 
+				ut.name AS unit_name,
+				p.price, 
+				p.price_sell, 
+				p.min_stock,
+				p.stock,
+				p.created_at,
+				p.updated_at
 			FROM products p
 			LEFT JOIN item_types it ON p.item_id = it.id
 			LEFT JOIN unit_types ut ON p.unit_id = ut.id
@@ -31,10 +40,19 @@ func GetAllProducts(db *sql.DB) http.HandlerFunc {
 		for rows.Next() {
 			var p model.Product
 			err := rows.Scan(
-				&p.ID, &p.Sku, &p.Name,
-				&p.ItemID, &p.ItemName,
-				&p.UnitID, &p.UnitName,
-				&p.Price, &p.PriceSell, &p.MinStock,
+				&p.ID,
+				&p.Sku,
+				&p.Name,
+				&p.ItemID,
+				&p.ItemName,
+				&p.UnitID,
+				&p.UnitName,
+				&p.Price,
+				&p.PriceSell,
+				&p.MinStock,
+				&p.Stock,
+				&p.CreatedAt,
+				&p.UpdatedAt,
 			)
 			if err != nil {
 				http.Error(w, "Scan error: "+err.Error(), http.StatusInternalServerError)
