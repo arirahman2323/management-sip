@@ -26,7 +26,7 @@ func CreateUnitType(db *sql.DB) http.HandlerFunc {
 		}
 
 		// 🔢 Ambil jumlah data sekarang untuk bikin ID baru
-		newID, err := utils.GenerateNewID(db, "item_types", "UNT")
+		newID, err := utils.GenerateNewID(db, "unit_types", "UNT")
 		if err != nil {
 			http.Error(w, err.Error(), http.StatusInternalServerError)
 			return
