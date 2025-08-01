@@ -20,16 +20,14 @@ func CreateProductOut(db *sql.DB) http.HandlerFunc {
 		porductOut.ID = "POUT-" + uuid.New().String()
 
 		query := `
-			INSERT INTO products_out (id, product_id, quantity, supplier, note, received_by)
-			VALUES (?, ?, ?, ?, ?, ?, ?)
+			INSERT INTO products_out (id, product_id, quantity)
+			VALUES (?, ?, ?)
 		`
 		_, err := db.Exec(
 			query,
 			porductOut.ID,
 			porductOut.ProductID,
 			porductOut.Quantity,
-			porductOut.Note,
-			porductOut.ReceivedBy,
 		)
 		if err != nil {
 			http.Error(w, err.Error(), http.StatusInternalServerError)
@@ -37,7 +35,7 @@ func CreateProductOut(db *sql.DB) http.HandlerFunc {
 		}
 
 		// Update stok produk
-		_, _ = db.Exec("UPDATE products SET stock = stock + ? WHERE id = ?", porductOut.Quantity, porductOut.ProductID)
+		_, _ = db.Exec("UPDATE products SET stock = stock - ? WHERE id = ?", porductOut.Quantity, porductOut.ProductID)
 
 		json.NewEncoder(w).Encode(map[string]any{
 			"message": "Product in berhasil ditambahkan",

@@ -59,8 +59,11 @@ func SetupRoutes(db *sql.DB) http.Handler {
 	protected.HandleFunc("/product-in/{id}", productIn.UpdateProductIn(db)).Methods("PUT")
 	protected.HandleFunc("/product-in/{id}", productIn.DeleteProductIn(db)).Methods("DELETE")
 
-	// Product In
+	// Product Out
 	protected.HandleFunc("/product-out", productout.GetAllProductsOut(db)).Methods("GET")
+	protected.HandleFunc("/product-out", productout.CreateProductOut(db)).Methods("POST")
+	protected.HandleFunc("/product-out/{id}", productout.UpdateProductOut(db)).Methods("PUT")
+	protected.HandleFunc("/product-out/{id}", productout.DeleteProductOut(db)).Methods("DELETE")
 
 	// filterYear
 	protected.HandleFunc("/filter-years", filteryears.GetFilterYears(db)).Methods("GET")

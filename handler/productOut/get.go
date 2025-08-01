@@ -10,7 +10,7 @@ import (
 
 func GetAllProductsOut(db *sql.DB) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		rows, err := db.Query(`SELECT id, product_id, quantity, supplier, note, received_by, expired_date, created_at, updated_at FROM products_out`)
+		rows, err := db.Query(`SELECT id, product_id, quantity, created_at, updated_at FROM products_out`)
 		if err != nil {
 			http.Error(w, err.Error(), http.StatusInternalServerError)
 			return
@@ -20,7 +20,7 @@ func GetAllProductsOut(db *sql.DB) http.HandlerFunc {
 		var list []model.ProductOut
 		for rows.Next() {
 			var p model.ProductOut
-			err := rows.Scan(&p.ID, &p.ProductID, &p.Quantity, &p.Note, &p.ReceivedBy, &p.CreatedAt, &p.UpdatedAt)
+			err := rows.Scan(&p.ID, &p.ProductID, &p.Quantity, &p.CreatedAt, &p.UpdatedAt)
 			if err != nil {
 				http.Error(w, err.Error(), http.StatusInternalServerError)
 				return
