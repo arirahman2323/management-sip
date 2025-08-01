@@ -15,13 +15,16 @@ const Navbar = ({ toggleSidebar }) => {
       </div>
 
       <div className="flex items-center">
-        <div className="relative flex items-center">
-          <span className="mr-4 font-semibold">Fahmi Ari Rahman</span>
+        <div className="relative flex items-center gap-4">
           <img
             src={Avatar}
             alt="Avatar"
-            className="h-10 w-10 rounded-full object-cover border-2 border-black"
+            className="h-12 rounded-full object-cover border-2 border-gray-200"
           />
+          <div>
+            <p className="mr-4 font-semibold">Fahmi Ari Rahman</p>
+            <p className="text-xs">Pengelola Toko</p>
+          </div>
         </div>
       </div>
     </header>

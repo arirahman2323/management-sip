@@ -24,17 +24,9 @@ import { FaHandHoldingUsd } from "react-icons/fa";
 import { GiProfit } from "react-icons/gi";
 import { FaCoins } from "react-icons/fa";
 import { IoFilterOutline } from "react-icons/io5";
-import { GrStatusWarning } from "react-icons/gr";
-import { BsBoxSeam, BsRecycle } from "react-icons/bs";
-import { IoCartSharp } from "react-icons/io5";
-import { BsCartCheckFill } from "react-icons/bs";
-
-import {
-  ArchiveBoxIcon,
-  ArrowDownTrayIcon,
-  ArrowUpTrayIcon,
-} from "@heroicons/react/24/outline";
+import { BsBoxSeam, BsCartPlus, BsRecycle, BsCartCheck } from "react-icons/bs";
 import { PiBoxArrowDown, PiBoxArrowUp } from "react-icons/pi";
+import { TiWarningOutline } from "react-icons/ti";
 
 // FIX: Register all the necessary components for Chart.js
 ChartJS.register(
@@ -138,12 +130,12 @@ const Dashboard = () => {
         </div>
 
         {/* Product Tables */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
           <ProductTable
             title="Produk akan kadaluarsa"
             subtitle="10 produk akan kadaluarsa"
             products={productWillExpire}
-            icon={<GrStatusWarning className="h-6 w-6 text-yellow-500" />}
+            icon={<TiWarningOutline className="h-8 w-8 text-yellow-500" />}
             detail="/product-will-expired"
             radiusColor={"bg-yellow-400"}
           />
@@ -159,7 +151,7 @@ const Dashboard = () => {
             title="Barang dipesan"
             subtitle="20 produk dipesan"
             products={productOrder}
-            icon={<IoCartSharp className="h-6 w-6 text-blue-500" />}
+            icon={<BsCartPlus className="h-6 w-6 text-blue-500" />}
             detail="/product-order"
             radiusColor={"bg-cyan-500"}
           />
@@ -167,7 +159,7 @@ const Dashboard = () => {
             title="Barang sampai"
             subtitle="20 produk sampai"
             products={productArrived}
-            icon={<BsCartCheckFill className="h-6 w-6 text-green-500" />}
+            icon={<BsCartCheck className="h-6 w-6 text-green-500" />}
             detail="/product-arrived"
             radiusColor={"bg-green-400"}
           />

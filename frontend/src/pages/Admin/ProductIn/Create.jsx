@@ -5,9 +5,9 @@ const Create = ({ isOpen, onClose }) => {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-transparent bg-opacity-50 backdrop-blur-sm flex justify-center items-center z-50">
+    <div className="fixed inset-0 bg-black/50 bg-opacity-50  flex justify-center items-center z-50">
       <div className="bg-white rounded-lg shadow-xl p-6 w-full max-w-lg">
-        <div className="flex justify-between items-center border-b pb-3 mb-4">
+        <div className="flex justify-between items-center border-b border-gray-100 pb-3 mb-4">
           <h2 className="text-xl font-bold text-gray-800">Form Barang Masuk</h2>
           <button
             onClick={onClose}
