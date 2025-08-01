@@ -66,7 +66,7 @@ func SetupRoutes(db *sql.DB) http.Handler {
 	protected.HandleFunc("/product-out/{id}", productout.DeleteProductOut(db)).Methods("DELETE")
 
 	// filterYear
-	protected.HandleFunc("/filter-years", filteryears.GetFilterYears(db)).Methods("GET")
+	protected.HandleFunc("/filter-years", filteryears.GetFilterYearsHandler(db)).Methods("GET")
 
 	return router
 }
