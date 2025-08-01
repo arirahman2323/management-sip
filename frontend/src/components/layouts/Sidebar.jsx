@@ -6,48 +6,40 @@ import {
   BsBoxSeam,
   BsCartCheck,
   BsCartPlus,
-  BsCart,
   BsExclamationOctagon,
   BsFileEarmarkText,
+  BsCart,
+  BsArrowDownSquare,
+  BsArrowUpSquare,
 } from "react-icons/bs";
-import { PiBoxArrowDown, PiBoxArrowUp, PiRecycle } from "react-icons/pi";
+import { PiRecycle } from "react-icons/pi";
 import { TiWarningOutline } from "react-icons/ti";
-import { FaRegFileAlt } from "react-icons/fa";
 import BlueLogoSIP from "../logo/BlueLogoSIP";
 import Logout from "../../pages/Auth/Logout";
-import { CgBox } from "react-icons/cg";
 
-import { RiBox3Line } from "react-icons/ri";
-
-import { BsBox2 } from "react-icons/bs";
-import { RiErrorWarningLine } from "react-icons/ri";
-
-//Menu Sidebar
-const menuItems = [
+// 1. Pusat data untuk semua menu (Sumber Kebenaran Tunggal)
+const menuConfig = [
+  { type: "header", name: "Home" },
   {
-    name: "Produk",
-    icon: <BsBoxSeam size={26} />,
-    items: [
-      {
-        name: "Produk",
-        path: "/product",
-        icon: <CgBox size={19} />,
-      },
-      {
-        name: "Barang Masuk",
-        path: "/product-in",
-        icon: <PiBoxArrowDown size={20} />,
-      },
-      {
-        name: "Barang Keluar",
-        path: "/product-out",
-        icon: <PiBoxArrowUp size={20} />,
-      },
-    ],
+    name: "Dashboard",
+    path: "/dashboard",
+    icon: <MdOutlineSpaceDashboard size={24} />,
+  },
+  { type: "header", name: "Pages" },
+  { name: "Produk", path: "/product", icon: <BsBoxSeam size={22} /> },
+  {
+    name: "Barang Masuk",
+    path: "/product-in",
+    icon: <BsArrowDownSquare size={20} />,
+  },
+  {
+    name: "Barang Keluar",
+    path: "/product-out",
+    icon: <BsArrowUpSquare size={20} />,
   },
   {
     name: "Kadaluarsa",
-    icon: <BsExclamationOctagon size={26} />,
+    icon: <BsExclamationOctagon size={20} />,
     items: [
       {
         name: "Akan Kadaluarsa",
@@ -63,7 +55,7 @@ const menuItems = [
   },
   {
     name: "Pesanan",
-    icon: <BsCart size={26} />,
+    icon: <BsCart size={20} />,
     items: [
       {
         name: "Pesanan Barang",
@@ -77,21 +69,23 @@ const menuItems = [
       },
     ],
   },
+  { name: "Laporan", path: "/report", icon: <BsFileEarmarkText size={20} /> },
 ];
 
+// Helper function untuk mencari menu aktif
 const getActiveMenu = (pathname) => {
-  const activeMenu = menuItems.find((menu) =>
-    menu.items.some((item) => pathname === item.path)
-  );
-  return activeMenu ? activeMenu.name : null;
+  for (const menu of menuConfig) {
+    if (menu.items && menu.items.some((item) => pathname === item.path)) {
+      return menu.name;
+    }
+  }
+  return null;
 };
 
 const Sidebar = ({ isOpen }) => {
   const navigate = useNavigate();
   const location = useLocation();
-
   const [isModalOpen, setIsModalOpen] = useState(false);
-
   const [openSubmenu, setOpenSubmenu] = useState(
     getActiveMenu(location.pathname)
   );
@@ -100,19 +94,25 @@ const Sidebar = ({ isOpen }) => {
     setOpenSubmenu(getActiveMenu(location.pathname));
   }, [location.pathname]);
 
-  const toggleSubmenu = (menu) => {
-    setOpenSubmenu(openSubmenu === menu ? null : menu);
+  const toggleSubmenu = (menuName) => {
+    setOpenSubmenu(openSubmenu === menuName ? null : menuName);
   };
-
-  const baseLinkStyle =
-    "flex items-center pl-4 mt-1 py-2 font-semibold rounded-md transition-colors duration-300";
-  const activeLinkStyle = `${baseLinkStyle} bg-indigo-600 text-white`;
-  const inactiveLinkStyle = `${baseLinkStyle} text-gray-700 hover:bg-indigo-600 hover:text-white`;
 
   const handleLogout = () => {
     setIsModalOpen(false);
     navigate("/");
   };
+
+  // Definisi Style
+  const linkStyle =
+    "flex items-center pl-3 py-2 font-semibold rounded-md transition-colors duration-200";
+  const activeLinkStyle = `${linkStyle} bg-indigo-600 text-white`;
+  const inactiveLinkStyle = `${linkStyle} text-gray-700 hover:bg-indigo-600 hover:text-white`;
+
+  // Komponen pembungkus untuk merapikan ikon
+  const IconWrapper = ({ children }) => (
+    <div className="w-8 h-8 flex items-center justify-center">{children}</div>
+  );
 
   return (
     <>
@@ -121,84 +121,93 @@ const Sidebar = ({ isOpen }) => {
           isOpen ? "w-64" : "w-0"
         } overflow-hidden`}
       >
-        <div className="flex items-center p-4 flex-shrink-0">
-          <BlueLogoSIP />
-        </div>
-        <nav className="mt-2 flex-1 overflow-y-auto px-2">
-          {/* Home */}
-          <h4 className="px-2 font-semibold text-gray-600">Home</h4>
-          <NavLink
-            to="/dashboard"
-            className={({ isActive }) =>
-              isActive ? activeLinkStyle : inactiveLinkStyle
-            }
-          >
-            <MdOutlineSpaceDashboard size={30} />
-            <span className="ml-6 font-medium">Dashboard</span>
-          </NavLink>
-
-          {/* Menu Pages */}
-          <h4 className="mt-6 px-2 font-semibold text-gray-600">Pages</h4>
-          {menuItems.map((menu) => (
-            <div key={menu.name} className="mb-4">
-              <button
-                onClick={() => toggleSubmenu(menu.name)}
-                className={`w-full text-left ${inactiveLinkStyle}`}
-              >
-                {menu.icon}
-                <span className="ml-6 font-medium flex-1">{menu.name}</span>
-                <MdKeyboardArrowDown
-                  className={`transition-transform duration-300 ${
-                    openSubmenu === menu.name ? "rotate-180" : ""
+        <BlueLogoSIP />
+        <nav className="mt-1 flex-1 overflow-y-auto px-2">
+          {/* 2. Render semua menu secara dinamis dari 'menuConfig' */}
+          {menuConfig.map((menu, index) => {
+            // Render Header (e.g., "Home", "Pages")
+            if (menu.type === "header") {
+              return (
+                <h4
+                  key={index}
+                  className={`px-2 font-semibold text-gray-500 text-sm ${
+                    index > 0 ? "mt-4" : ""
                   }`}
-                  size={20}
-                />
-              </button>
-              <div
-                className={`mt-1 overflow-hidden transition-all duration-300 ${
-                  openSubmenu === menu.name ? "max-h-96" : "max-h-0"
-                }`}
-              >
-                <div className="pl-8 border-l-2 border-gray-200 ml-4">
-                  {menu.items.map((item) => (
-                    <NavLink
-                      key={item.path}
-                      to={item.path}
-                      className={({ isActive }) =>
-                        `flex items-center text-sm py-2 ${
-                          isActive
-                            ? "text-white bg-indigo-500 rounded-md pl-2"
-                            : "text-gray-600 hover:text-indigo-600"
-                        }`
-                      }
-                    >
-                      {item.icon}
-                      <span className="ml-4">{item.name}</span>
-                    </NavLink>
-                  ))}
-                </div>
-              </div>
-            </div>
-          ))}
-
-          {/* Report */}
-          <NavLink
-            to="/report"
-            className={({ isActive }) =>
-              isActive ? activeLinkStyle : inactiveLinkStyle
+                >
+                  {menu.name}
+                </h4>
+              );
             }
-          >
-            <BsFileEarmarkText size={26} />
-            <span className="ml-6 font-medium">Laporan</span>
-          </NavLink>
 
-          {/* Logout */}
+            // Render Menu dengan Submenu
+            if (menu.items) {
+              return (
+                <div key={menu.name}>
+                  <button
+                    onClick={() => toggleSubmenu(menu.name)}
+                    className={`w-full text-left mt-1 ${inactiveLinkStyle}`}
+                  >
+                    <IconWrapper>{menu.icon}</IconWrapper>
+                    <span className="ml-2 font-medium flex-1">{menu.name}</span>
+                    <MdKeyboardArrowDown
+                      className={`transition-transform duration-300 mr-2 ${
+                        openSubmenu === menu.name ? "rotate-180" : ""
+                      }`}
+                      size={20}
+                    />
+                  </button>
+                  <div
+                    className={`overflow-hidden transition-all duration-300 ${
+                      openSubmenu === menu.name ? "max-h-96" : "max-h-0"
+                    }`}
+                  >
+                    <div className="pl-8 border-l-2 border-gray-200 ml-5 my-1">
+                      {menu.items.map((item) => (
+                        <NavLink
+                          key={item.path}
+                          to={item.path}
+                          className={({ isActive }) =>
+                            `flex items-center text-sm py-2 pl-2 rounded-md ${
+                              isActive
+                                ? "text-white bg-indigo-400"
+                                : "text-gray-600 hover:text-indigo-600"
+                            }`
+                          }
+                        >
+                          <IconWrapper>{item.icon}</IconWrapper>
+                          <span className="ml-2">{item.name}</span>
+                        </NavLink>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              );
+            }
+
+            // Render Menu Biasa (tanpa submenu)
+            return (
+              <NavLink
+                key={menu.path}
+                to={menu.path}
+                className={({ isActive }) =>
+                  `${isActive ? activeLinkStyle : inactiveLinkStyle} mt-1`
+                }
+              >
+                <IconWrapper>{menu.icon}</IconWrapper>
+                <span className="ml-2 font-medium">{menu.name}</span>
+              </NavLink>
+            );
+          })}
+
+          {/* Tombol Logout */}
           <button
             onClick={() => setIsModalOpen(true)}
-            className={`cursor-pointer w-full text-left mt-4 mb-4 ${inactiveLinkStyle}`}
+            className={`cursor-pointer w-full text-left mt-2 mb-4 ${inactiveLinkStyle}`}
           >
-            <FiLogOut size={26} className="pl-0.5" />
-            <span className="ml-7 font-medium">Keluar</span>
+            <IconWrapper>
+              <FiLogOut size={20} />
+            </IconWrapper>
+            <span className="ml-2 font-medium">Keluar</span>
           </button>
         </nav>
       </div>

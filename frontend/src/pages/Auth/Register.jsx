@@ -9,7 +9,7 @@ const Register = () => {
       <div className="w-full max-w-md space-y-8">
         <div>
           <Logo className="justify-center" />
-          <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">
+          <h2 className="text-center text-3xl font-bold tracking-tight text-gray-900">
             Daftar Akun
           </h2>
           <p className="mt-2 text-center text-sm text-gray-600">

@@ -24,10 +24,13 @@ const Index = () => {
   const fetchProducts = async () => {
     try {
       const res = await axiosInstance.get(API_PATHS.PRODUCT.GET_PRODUCT);
-      setData(res.data.data);
-      setFilteredData(res.data.data);
+      const fetchedData = Array.isArray(res?.data?.data) ? res.data.data : [];
+      setData(fetchedData);
+      setFilteredData(fetchedData);
     } catch (err) {
       console.error("Error fetching products:", err);
+      setData([]);
+      setFilteredData([]);
     }
   };
 
@@ -37,6 +40,11 @@ const Index = () => {
 
   // Pencarian
   useEffect(() => {
+    if (!Array.isArray(data)) {
+      setFilteredData([]);
+      return;
+    }
+
     const result = data.filter((product) => {
       if (searchField === "all") {
         return Object.values(product).some((val) => val?.toString().toLowerCase().includes(searchQuery.toLowerCase()));
@@ -47,7 +55,7 @@ const Index = () => {
     });
 
     setFilteredData(result);
-  }, [searchQuery, data]);
+  }, [searchQuery, data, searchField]);
 
   // Hapus produk
   const handleDeleteClick = (product) => setProductToDelete(product);
@@ -66,7 +74,7 @@ const Index = () => {
   // Edit
   const handleEditClick = (product) => setEditingProduct(product);
 
-  const columns = generateColumns(data[0], handleDeleteClick, handleEditClick);
+  const columns = generateColumns(Array.isArray(data) && data.length > 0 ? data[0] : {}, handleDeleteClick, handleEditClick);
 
   return (
     <div>
@@ -106,7 +114,7 @@ const Index = () => {
               </div>
 
               {/* Data Table Produk */}
-              <DataTable columns={columns} data={filteredData} pagination highlightOnHover />
+              {Array.isArray(filteredData) && filteredData.length > 0 ? <DataTable columns={columns} data={filteredData} pagination highlightOnHover /> : <div className="text-center text-gray-500 p-4">Tidak ada data produk.</div>}
             </div>
           </div>
         </DashboardLayout>

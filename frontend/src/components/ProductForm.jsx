@@ -42,7 +42,9 @@ const ProductForm = ({ formData, onChange, onSubmit, onCancel }) => {
           <label className="text-sm font-normal">Jenis Barang</label>
           <div className="flex gap-2">
             <select name="item_id" value={formData.item_id} onChange={onChange} className="bg-gray-50 text-gray-500 w-full text-sm p-3 rounded-lg focus:outline-gray-500">
-              <option value="">Pilih Jenis Barang</option>
+              <option disabled value="">
+                Pilih Jenis Barang
+              </option>
               {categories.map((cat) => (
                 <option key={cat.id} value={cat.id}>
                   {cat.name}
@@ -59,7 +61,9 @@ const ProductForm = ({ formData, onChange, onSubmit, onCancel }) => {
           <label className="text-sm font-normal">Satuan</label>
           <div className="flex gap-2">
             <select name="unit_id" value={formData.unit_id} onChange={onChange} className="bg-gray-50 text-gray-500 w-full text-sm p-3 rounded-lg focus:outline-gray-500">
-              <option value="">Pilih Satuan Barang</option>
+              <option disabled value="">
+                Pilih Satuan Barang
+              </option>
               {units.map((unit) => (
                 <option key={unit.id} value={unit.id}>
                   {unit.name}

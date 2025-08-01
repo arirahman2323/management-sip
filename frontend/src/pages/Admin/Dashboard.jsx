@@ -24,7 +24,14 @@ import { FaHandHoldingUsd } from "react-icons/fa";
 import { GiProfit } from "react-icons/gi";
 import { FaCoins } from "react-icons/fa";
 import { IoFilterOutline } from "react-icons/io5";
-import { BsBoxSeam, BsCartPlus, BsRecycle, BsCartCheck } from "react-icons/bs";
+import {
+  BsBoxSeam,
+  BsCartPlus,
+  BsRecycle,
+  BsCartCheck,
+  BsArrowDownSquare,
+  BsArrowUpSquare,
+} from "react-icons/bs";
 import { PiBoxArrowDown, PiBoxArrowUp } from "react-icons/pi";
 import { TiWarningOutline } from "react-icons/ti";
 
@@ -59,7 +66,7 @@ const Dashboard = () => {
           <StatCard
             title="Total Produk"
             value="196"
-            icon={<BsBoxSeam className="h-6 w-6 text-cyan-500" />}
+            icon={<BsBoxSeam className="h-7 w-7 text-cyan-500" />}
             bgColor="bg-white"
             fontColor={"text-cyan-500"}
             gradientColor={"bg-gradient-to-tr from-cyan-400 to-cyan-600"}
@@ -67,7 +74,7 @@ const Dashboard = () => {
           <StatCard
             title="Produk In"
             value="196"
-            icon={<PiBoxArrowDown className="h-8 w-8 text-blue-700" />}
+            icon={<BsArrowDownSquare className="h-7 w-7 text-blue-700" />}
             bgColor="bg-white"
             fontColor={"text-blue-700"}
             gradientColor={"bg-gradient-to-tr from-blue-500 to-blue-700"}
@@ -75,7 +82,7 @@ const Dashboard = () => {
           <StatCard
             title="Produk Out"
             value="196"
-            icon={<PiBoxArrowUp className="h-8 w-8 text-yellow-600" />}
+            icon={<BsArrowUpSquare className="h-7 w-7 text-yellow-600" />}
             bgColor="bg-white"
             fontColor={"text-yellow-500"}
             gradientColor={"bg-gradient-to-tr from-yellow-400 to-yellow-600"}
