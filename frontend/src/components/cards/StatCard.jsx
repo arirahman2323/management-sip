@@ -9,15 +9,21 @@ const StatCard = ({
   gradientColor,
 }) => {
   return (
-    <div className="bg-white p-4 rounded-lg shadow-md flex items-center justify-center">
-      <div className={`p-1 rounded-full mr-4 ${gradientColor}`}>
-        {/* 3. Div ikon asli sekarang ada di dalamnya */}
-        <div className={`p-3 rounded-full ${bgColor}`}>{icon}</div>
+    <div className="bg-white p-4 rounded-lg shadow-md flex flex-col items-center gap-1">
+      <div
+        className={`h-18 w-18 rounded-full flex items-center justify-center p-1 ${gradientColor}`}
+      >
+        <div
+          className={`h-14 w-14 rounded-full flex items-center justify-center ${bgColor}`}
+        >
+          {icon}
+        </div>
       </div>
-      <div>
-        <h1 className="text-gray-500 text-xl">{title}</h1>
-        <p className={`text-3xl font-bold ${fontColor}`}>{value}</p>
-      </div>
+
+      <h1 className="text-gray-500 text-base text-center font-medium">
+        {title}
+      </h1>
+      <p className={`text-3xl text-center font-bold ${fontColor}`}>{value}</p>
     </div>
   );
 };
