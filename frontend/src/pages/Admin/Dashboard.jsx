@@ -24,17 +24,16 @@ import { FaHandHoldingUsd } from "react-icons/fa";
 import { GiProfit } from "react-icons/gi";
 import { FaCoins } from "react-icons/fa";
 import { IoFilterOutline } from "react-icons/io5";
-import { GrStatusWarning } from "react-icons/gr";
-import { BsBoxSeam, BsRecycle } from "react-icons/bs";
-import { IoCartSharp } from "react-icons/io5";
-import { BsCartCheckFill } from "react-icons/bs";
-
 import {
-  ArchiveBoxIcon,
-  ArrowDownTrayIcon,
-  ArrowUpTrayIcon,
-} from "@heroicons/react/24/outline";
+  BsBoxSeam,
+  BsCartPlus,
+  BsRecycle,
+  BsCartCheck,
+  BsArrowDownSquare,
+  BsArrowUpSquare,
+} from "react-icons/bs";
 import { PiBoxArrowDown, PiBoxArrowUp } from "react-icons/pi";
+import { TiWarningOutline } from "react-icons/ti";
 
 // FIX: Register all the necessary components for Chart.js
 ChartJS.register(
@@ -67,7 +66,7 @@ const Dashboard = () => {
           <StatCard
             title="Total Produk"
             value="196"
-            icon={<BsBoxSeam className="h-6 w-6 text-cyan-500" />}
+            icon={<BsBoxSeam className="h-7 w-7 text-cyan-500" />}
             bgColor="bg-white"
             fontColor={"text-cyan-500"}
             gradientColor={"bg-gradient-to-tr from-cyan-400 to-cyan-600"}
@@ -75,7 +74,7 @@ const Dashboard = () => {
           <StatCard
             title="Produk In"
             value="196"
-            icon={<PiBoxArrowDown className="h-8 w-8 text-blue-700" />}
+            icon={<BsArrowDownSquare className="h-7 w-7 text-blue-700" />}
             bgColor="bg-white"
             fontColor={"text-blue-700"}
             gradientColor={"bg-gradient-to-tr from-blue-500 to-blue-700"}
@@ -83,7 +82,7 @@ const Dashboard = () => {
           <StatCard
             title="Produk Out"
             value="196"
-            icon={<PiBoxArrowUp className="h-8 w-8 text-yellow-600" />}
+            icon={<BsArrowUpSquare className="h-7 w-7 text-yellow-600" />}
             bgColor="bg-white"
             fontColor={"text-yellow-500"}
             gradientColor={"bg-gradient-to-tr from-yellow-400 to-yellow-600"}
@@ -138,12 +137,12 @@ const Dashboard = () => {
         </div>
 
         {/* Product Tables */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
           <ProductTable
             title="Produk akan kadaluarsa"
             subtitle="10 produk akan kadaluarsa"
             products={productWillExpire}
-            icon={<GrStatusWarning className="h-6 w-6 text-yellow-500" />}
+            icon={<TiWarningOutline className="h-8 w-8 text-yellow-500" />}
             detail="/product-will-expired"
             radiusColor={"bg-yellow-400"}
           />
@@ -159,7 +158,7 @@ const Dashboard = () => {
             title="Barang dipesan"
             subtitle="20 produk dipesan"
             products={productOrder}
-            icon={<IoCartSharp className="h-6 w-6 text-blue-500" />}
+            icon={<BsCartPlus className="h-6 w-6 text-blue-500" />}
             detail="/product-order"
             radiusColor={"bg-cyan-500"}
           />
@@ -167,7 +166,7 @@ const Dashboard = () => {
             title="Barang sampai"
             subtitle="20 produk sampai"
             products={productArrived}
-            icon={<BsCartCheckFill className="h-6 w-6 text-green-500" />}
+            icon={<BsCartCheck className="h-6 w-6 text-green-500" />}
             detail="/product-arrived"
             radiusColor={"bg-green-400"}
           />

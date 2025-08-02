@@ -5,15 +5,7 @@ import blue_logo from "../../assets/images/blue_logo.png";
 const BlueLogo = () => {
   return (
     <div className="flex items-center">
-      <img src={blue_logo} alt="SIP Logo" className="h-20 w-auto" />
-      <div>
-        <p className="font-semibold text-gray-800 text-sm leading-tight">
-          Sytem Inventory
-        </p>
-        <p className="font-semibold text-gray-800 text-sm leading-tight">
-          Product
-        </p>
-      </div>
+      <img src={blue_logo} alt="SIP Logo" className="h-30 w-auto" />
     </div>
   );
 };
