@@ -32,4 +32,11 @@ export const API_PATHS = {
     UPDATE_PRODUCT_IN: (id) => `/api/product-in/${id}`,
     DELETE_PRODUCT_IN: (id) => `/api/product-in/${id}`,
   },
+
+  PRODUCT_OUT: {
+    GET_PRODUCT_OUT: "/api/product-out",
+    CREATE_PRODUCT_OUT: "/api/product-out",
+    UPDATE_PRODUCT_OUT: (id) => `/api/product-out/${id}`,
+    DELETE_PRODUCT_OUT: (id) => `/api/product-out/${id}`,
+  },
 };

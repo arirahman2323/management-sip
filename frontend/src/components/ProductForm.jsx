@@ -30,18 +30,18 @@ const ProductForm = ({ formData, onChange, onSubmit, onCancel }) => {
       <form onSubmit={onSubmit} className="p-4 space-y-3">
         <div className="flex flex-col">
           <label className="text-sm font-normal">Kode Barang</label>
-          <input name="sku" value={formData.sku} onChange={onChange} className="bg-gray-50 text-gray-500 text-sm p-3 rounded-lg focus:outline-gray-500" placeholder="Masukan Kode Barang Anda" />
+          <input name="sku" value={formData.sku} onChange={onChange} className="bg-gray-50 text-gray-500 text-sm p-3 rounded-lg focus:outline-gray-500" placeholder="Masukan Kode Barang Anda" required />
         </div>
 
         <div className="flex flex-col">
           <label className="text-sm font-normal">Nama Barang</label>
-          <input name="name" value={formData.name} onChange={onChange} className="bg-gray-50 text-gray-500 text-sm p-3 rounded-lg focus:outline-gray-500" placeholder="Masukan Nama Barang Anda" />
+          <input name="name" value={formData.name} onChange={onChange} className="bg-gray-50 text-gray-500 text-sm p-3 rounded-lg focus:outline-gray-500" placeholder="Masukan Nama Barang Anda" required />
         </div>
 
         <div className="flex flex-col">
           <label className="text-sm font-normal">Jenis Barang</label>
           <div className="flex gap-2">
-            <select name="item_id" value={formData.item_id} onChange={onChange} className="bg-gray-50 text-gray-500 w-full text-sm p-3 rounded-lg focus:outline-gray-500">
+            <select name="item_id" value={formData.item_id} onChange={onChange} className="bg-gray-50 text-gray-500 w-full text-sm p-3 rounded-lg focus:outline-gray-500" required>
               <option disabled value="">
                 Pilih Jenis Barang
               </option>
@@ -60,7 +60,7 @@ const ProductForm = ({ formData, onChange, onSubmit, onCancel }) => {
         <div className="flex flex-col">
           <label className="text-sm font-normal">Satuan</label>
           <div className="flex gap-2">
-            <select name="unit_id" value={formData.unit_id} onChange={onChange} className="bg-gray-50 text-gray-500 w-full text-sm p-3 rounded-lg focus:outline-gray-500">
+            <select name="unit_id" value={formData.unit_id} onChange={onChange} className="bg-gray-50 text-gray-500 w-full text-sm p-3 rounded-lg focus:outline-gray-500" required>
               <option disabled value="">
                 Pilih Satuan Barang
               </option>
@@ -79,7 +79,7 @@ const ProductForm = ({ formData, onChange, onSubmit, onCancel }) => {
         <div className="grid grid-cols-2 gap-2">
           <div className="flex flex-col">
             <label className="text-sm font-normal">Stok Barang</label>
-            <input type="number" name="stock" value={formData.stock || ""} onChange={onChange} className="bg-gray-50 text-gray-500 text-sm p-3 rounded-lg focus:outline-gray-500" placeholder="0" />
+            <input type="number" name="stock" value={formData.stock || ""} onChange={onChange} className="bg-gray-50 text-gray-500 text-sm p-3 rounded-lg focus:outline-gray-500" placeholder="0" required />
           </div>
           <div className="flex flex-col">
             <label className="text-sm font-normal">Harga Beli</label>
@@ -95,6 +95,7 @@ const ProductForm = ({ formData, onChange, onSubmit, onCancel }) => {
                 })
               }
               className="bg-gray-50 text-gray-500 text-sm p-3 rounded-lg focus:outline-gray-500"
+              required
             />
           </div>
 
@@ -112,11 +113,12 @@ const ProductForm = ({ formData, onChange, onSubmit, onCancel }) => {
                 })
               }
               className="bg-gray-50 text-gray-500 text-sm p-3 rounded-lg focus:outline-gray-500"
+              required
             />
           </div>
           <div className="flex flex-col">
             <label className="text-sm font-normal">Profit</label>
-            <input value={`Rp. ${formatRupiah(profit)}`} readOnly className="bg-gray-50 text-gray-500 text-sm p-3 rounded-lg focus:outline-gray-500" />
+            <input value={`Rp. ${formatRupiah(profit)}`} readOnly className="bg-gray-50 text-gray-500 text-sm p-3 rounded-lg focus:outline-gray-500" required />
           </div>
         </div>
 
