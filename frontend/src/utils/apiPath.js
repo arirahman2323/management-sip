@@ -39,4 +39,8 @@ export const API_PATHS = {
     UPDATE_PRODUCT_OUT: (id) => `/api/product-out/${id}`,
     DELETE_PRODUCT_OUT: (id) => `/api/product-out/${id}`,
   },
+
+  DASHBOARD: {
+    GET_DASHBOARD: (year) => `/api/filter-years?year=${year}`,
+  },
 };

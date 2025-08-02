@@ -1,73 +1,49 @@
 import React from "react";
 import CustomHeader from "../../../components/tables/CustomHeader";
 
-export const columns = [
-  {
-    name: "id",
-    selector: (row) => row.id,
-    sortable: true,
-    width: "60px",
-  },
-  {
-    name: <CustomHeader title="Item Code" />,
-    selector: (row) => row.itemCode,
-    sortable: true,
-    minWidth: "60px",
-  },
-  {
-    name: <CustomHeader title="Name" />,
-    selector: (row) => row.name,
-    sortable: true,
-    minWidth: "250px",
-    grow: 2,
-  },
-  {
-    name: <CustomHeader title="Category" />,
-    selector: (row) => row.category,
-    sortable: true,
-    grow: 1,
-  },
-  {
-    name: <CustomHeader title="Unit" />,
-    selector: (row) => row.unit,
-    sortable: true,
-    grow: 1,
-  },
-  {
-    name: <CustomHeader title="Stock" />,
-    selector: (row) => row.stock,
-    sortable: true,
-    width: "80px",
-  },
-  {
-    name: <CustomHeader title="Tanggal" />,
-    selector: (row) => row.tglInput,
-    sortable: true,
-    minWidth: "130px",
-  },
-  {
-    name: <CustomHeader title="Harga Satuan" />,
-    selector: (row) => row.purchasePrice,
-    sortable: true,
-    minWidth: "130px",
-  },
-  {
-    name: <CustomHeader title="Profit" />,
-    selector: (row) => row.profit,
-    sortable: true,
-    minWidth: "130px",
-  },
-  {
-    name: <CustomHeader title="Total Harga" />,
-    selector: (row) => row.sumPrice,
-    sortable: true,
-    minWidth: "130px",
-  },
-  {
-    name: <CustomHeader title="Total Profit" />,
-    selector: (row) => row.sumProfit,
-    sortable: true,
-    minWidth: "130px",
-  },
-];
-export default columns;
+const formatDate = (dateString) => {
+  if (!dateString) return "-";
+  try {
+    const date = new Date(dateString);
+    return new Intl.DateTimeFormat("id-ID", {
+      day: "numeric",
+      month: "long",
+      year: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+    }).format(date);
+  } catch (error) {
+    return dateString;
+  }
+};
+
+export const generateColumns = () => {
+  return [
+    {
+      name: <CustomHeader title="Kode Barang" />,
+      selector: (row) => row.itemCode || "-",
+      sortable: true,
+      minWidth: "140px",
+    },
+    {
+      name: <CustomHeader title="Nama Produk" />,
+      selector: (row) => row.name || "-",
+      sortable: true,
+      minWidth: "250px",
+      grow: 2,
+    },
+    {
+      name: <CustomHeader title="Jumlah Keluar" />,
+      selector: (row) => row.quantity || 0,
+      sortable: true,
+      width: "150px",
+      right: "true",
+    },
+    {
+      name: <CustomHeader title="Tanggal Keluar" />,
+      selector: (row) => formatDate(row.date),
+      sortable: true,
+      minWidth: "200px",
+    },
+  ];
+};

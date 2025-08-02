@@ -2,7 +2,7 @@ import React from "react";
 import { Bar } from "react-chartjs-2";
 import { barChartData } from "../../data/data";
 
-const BarChart = () => {
+const BarChart = ({ data }) => {
   const options = {
     responsive: true,
     plugins: {
@@ -22,7 +22,7 @@ const BarChart = () => {
       },
     },
   };
-  return <Bar data={barChartData} options={options} />;
+  return <Bar data={data} options={options} />;
 };
 
 export default BarChart;
