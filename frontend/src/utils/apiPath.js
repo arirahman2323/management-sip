@@ -43,4 +43,8 @@ export const API_PATHS = {
   DASHBOARD: {
     GET_DASHBOARD: (year) => `/api/filter-years?year=${year}`,
   },
+
+  PRODUCT_EXPIRED: {
+    GET_PRODUCT_EXPIRED: "/api/product-expired",
+  },
 };

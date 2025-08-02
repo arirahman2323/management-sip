@@ -72,12 +72,17 @@ const Index = () => {
             {/* Pencarian */}
             <div className="flex items-center border-2 border-gray-300 rounded-lg overflow-hidden w-full max-w-md">
               <FaFilter size={20} className="ml-2 text-gray-500" />
-              <select value={searchField} onChange={(e) => setSearchField(e.target.value)} className="p-2 text-sm border-r-2">
+              <select value={searchField} onChange={(e) => setSearchField(e.target.value)} className="p-2 text-sm border-r-2 border-gray-300 outline-none text-gray-700">
                 <option value="all">All</option>
                 <option value="itemCode">Kode Barang</option>
                 <option value="name">Nama Produk</option>
                 <option value="note">Catatan</option>
               </select>
+              <div className="flex items-center px-2 text-gray-500">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+              </div>
               <input type="text" className="w-full p-2 text-sm outline-none" placeholder="Search" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} />
             </div>
             {/* Tombol Add Product Out */}
