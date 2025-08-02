@@ -1,6 +1,6 @@
 package productexpired
 
-type ExpiredProduct struct {
+type ExpiredSoon struct {
 	ProductID   string `json:"product_id"`
 	ProductName string `json:"product_name"`
 	Quantity    int    `json:"quantity"`
@@ -8,4 +8,16 @@ type ExpiredProduct struct {
 	UpdatedAt   string `json:"updated_at"`
 	ExpiredDate string `json:"expired_date"`
 	Message     string `json:"message"`
+}
+
+type ExpiredProduct struct {
+	ProductID     string `json:"product_id"`
+	Quantity      int    `json:"quantity"`
+	Supplier      string `json:"supplier"`
+	CreatedAt     string `json:"created_at"`
+	UpdatedAt     string `json:"updated_at"`
+	Note          string `json:"note"`
+	ReceivedBy    string `json:"received_by"`
+	ExpiredDate   string `json:"expired_date"`
+	ExpiredStatus bool   `json:"expired_status"`
 }

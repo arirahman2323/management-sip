@@ -1,12 +1,55 @@
 package productexpired
 
-import "database/sql"
+import (
+	"database/sql"
+	"log"
+)
 
-func GetExpiredStatus(db *sql.DB) error {
+// Struct untuk response expired products
+
+func GetExpiredStatus(db *sql.DB) ([]ExpiredProduct, error) {
+	// Step 1: Update expired_status = TRUE jika sudah expired
 	_, err := db.Exec(`
 		UPDATE products_in
 		SET expired_status = TRUE
-		WHERE DATE(expired_date) <= DATE('now') AND expired_status = FALSE
+		WHERE DATE(expired_date) <= DATE('now') AND (expired_status IS FALSE OR expired_status IS NULL)
 	`)
-	return err
+	if err != nil {
+		return nil, err
+	}
+
+	// Step 2: Ambil semua data yang expired_status = TRUE
+	rows, err := db.Query(`
+		SELECT product_id, quantity, supplier, created_at, updated_at, note, received_by, expired_date, expired_status
+		FROM products_in
+		WHERE expired_status IS TRUE
+	`)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+
+	var expiredProducts []ExpiredProduct
+
+	for rows.Next() {
+		var p ExpiredProduct
+		err := rows.Scan(
+			&p.ProductID,
+			&p.Quantity,
+			&p.Supplier,
+			&p.CreatedAt,
+			&p.UpdatedAt,
+			&p.Note,
+			&p.ReceivedBy,
+			&p.ExpiredDate,
+			&p.ExpiredStatus,
+		)
+		if err != nil {
+			log.Println("Error scanning expired product:", err)
+			continue
+		}
+		expiredProducts = append(expiredProducts, p)
+	}
+
+	return expiredProducts, nil
 }

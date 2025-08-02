@@ -77,7 +77,7 @@ func Migrate(db *sql.DB) {
 					note TEXT, 										-- Catatan tambahan
 					received_by TEXT,								-- Nama penerima
 					expired_date TEXT,								-- Tanggal kadaluarsa
-					expired_status BOOLEAN DEFAULT FALSE,			-- Status kadaluarsa
+					expired_status BOOLEAN NOT NULL DEFAULT FALSE,			-- Status kadaluarsa
 					
 					FOREIGN KEY(product_id) REFERENCES products(id) ON DELETE CASCADE
 				);`,

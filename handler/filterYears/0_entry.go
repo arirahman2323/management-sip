@@ -16,24 +16,27 @@ func GetFilterYearsHandler(db *sql.DB) http.HandlerFunc {
 			return
 		}
 
-		// Query total products in
 		productInMonthly, productInTotal, err := QueryProductByYear(db, "products_in", year)
 		if err != nil {
 			http.Error(w, "Error querying products_in: "+err.Error(), http.StatusInternalServerError)
 			return
 		}
 
-		// Query total products out
 		productOutMonthly, productOutTotal, err := QueryProductByYear(db, "products_out", year)
 		if err != nil {
 			http.Error(w, "Error querying products_out: "+err.Error(), http.StatusInternalServerError)
 			return
 		}
 
-		// Query profit & transaction summary
 		profitSummary, err := QueryProfitSummary(db, year)
 		if err != nil {
 			http.Error(w, "Error querying profit summary: "+err.Error(), http.StatusInternalServerError)
+			return
+		}
+
+		totalAll, err := QueryTotalStockAll(db)
+		if err != nil {
+			http.Error(w, "Error querying total stock: "+err.Error(), http.StatusInternalServerError)
 			return
 		}
 
@@ -50,6 +53,7 @@ func GetFilterYearsHandler(db *sql.DB) http.HandlerFunc {
 				"total_profit":      profitSummary.TotalProfit,
 				"total_transaction": profitSummary.TotalTransaction,
 			},
+			"total_stock_all": totalAll.TotalStock,
 		}
 
 		w.Header().Set("Content-Type", "application/json")

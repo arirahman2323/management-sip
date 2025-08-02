@@ -5,7 +5,7 @@ import (
 	"time"
 )
 
-func GetExpiringSoon(db *sql.DB) ([]ExpiredProduct, error) {
+func GetExpiringSoon(db *sql.DB) ([]ExpiredSoon, error) {
 	query := `
 		SELECT 
 			pi.product_id,
@@ -25,7 +25,7 @@ func GetExpiringSoon(db *sql.DB) ([]ExpiredProduct, error) {
 	}
 	defer rows.Close()
 
-	var results []ExpiredProduct
+	var results []ExpiredSoon
 	now := time.Now()
 
 	for rows.Next() {
@@ -49,7 +49,7 @@ func GetExpiringSoon(db *sql.DB) ([]ExpiredProduct, error) {
 
 		daysLeft := int(expiredTime.Sub(now).Hours() / 24)
 		if daysLeft <= 7 {
-			results = append(results, ExpiredProduct{
+			results = append(results, ExpiredSoon{
 				ProductID:   productID,
 				ProductName: productName,
 				Quantity:    quantity,

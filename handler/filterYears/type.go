@@ -9,3 +9,7 @@ type ProfitSummary struct {
 	TotalProfit      float64 `json:"total_profit"`
 	TotalTransaction float64 `json:"total_transaction"`
 }
+
+type TotalStockAll struct {
+	TotalStock int `json:"total_stock"`
+}
