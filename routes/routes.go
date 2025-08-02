@@ -13,6 +13,7 @@ import (
 	"github.com/arirahman2323/managment-sip/handler/itemType"
 	"github.com/arirahman2323/managment-sip/handler/middleware"
 	"github.com/arirahman2323/managment-sip/handler/product"
+	productexpired "github.com/arirahman2323/managment-sip/handler/productExpired"
 	"github.com/arirahman2323/managment-sip/handler/productIn"
 	productout "github.com/arirahman2323/managment-sip/handler/productOut"
 	"github.com/arirahman2323/managment-sip/handler/unitType"
@@ -65,8 +66,11 @@ func SetupRoutes(db *sql.DB) http.Handler {
 	protected.HandleFunc("/product-out/{id}", productout.UpdateProductOut(db)).Methods("PUT")
 	protected.HandleFunc("/product-out/{id}", productout.DeleteProductOut(db)).Methods("DELETE")
 
-	// filterYear
+	// FilterYear
 	protected.HandleFunc("/filter-years", filteryears.GetFilterYearsHandler(db)).Methods("GET")
+
+	// Product Expired
+	protected.HandleFunc("/product-expired", productexpired.GetProductExpired(db)).Methods("GET")
 
 	return router
 }

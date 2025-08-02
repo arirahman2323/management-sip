@@ -10,12 +10,12 @@ func QueryProfitSummary(db *sql.DB, year int) (ProfitSummary, error) {
 		SELECT 
 			p.id AS product_id,
 			IFNULL(SUM(po.quantity), 0) AS total_quantity,
-			p.price AS buy_price,
-			p.price_sell AS sell_price
+			p.price_sell AS sell_price,
+			p.profit_amount
 		FROM products_out po
 		JOIN products p ON p.id = po.product_id
 		WHERE strftime('%Y', po.updated_at) = ?
-		GROUP BY p.id, p.price, p.price_sell
+		GROUP BY p.id, p.price_sell, p.profit_amount
 	`
 
 	rows, err := db.Query(query, strconv.Itoa(year))
@@ -28,17 +28,17 @@ func QueryProfitSummary(db *sql.DB, year int) (ProfitSummary, error) {
 
 	for rows.Next() {
 		var (
-			productID string
-			quantity  int
-			buyPrice  float64
-			sellPrice float64
+			productID    string
+			quantity     int
+			sellPrice    float64
+			profitAmount float64
 		)
 
-		if err := rows.Scan(&productID, &quantity, &buyPrice, &sellPrice); err != nil {
+		if err := rows.Scan(&productID, &quantity, &sellPrice, &profitAmount); err != nil {
 			return summary, err
 		}
 
-		profit := (sellPrice - buyPrice) * float64(quantity)
+		profit := profitAmount * float64(quantity)
 		transaction := sellPrice * float64(quantity)
 
 		summary.TotalProfit += profit

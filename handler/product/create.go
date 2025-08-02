@@ -42,12 +42,16 @@ func CreateProduct(db *sql.DB) http.HandlerFunc {
 		_ = db.QueryRow("SELECT COUNT(*) FROM products").Scan(&count)
 		input.ID = fmt.Sprintf("PRD-%03d", count+1)
 
+		// Hitung profit_amount
+		profitAmount := input.PriceSell - input.Price
+		input.ProfitAmount = profitAmount
+
 		// Insert ke DB
 		_, err = db.Exec(`
-			INSERT INTO products (id, sku, name, item_id, unit_id, price, price_sell, min_stock)
-			VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
+			INSERT INTO products (id, sku, name, item_id, unit_id, price, price_sell, min_stock, profit_amount)
+			VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
 			input.ID, input.Sku, input.Name, input.ItemID, input.UnitID,
-			input.Price, input.PriceSell, input.MinStock,
+			input.Price, input.PriceSell, input.MinStock, profitAmount,
 		)
 		if err != nil {
 			http.Error(w, "Insert failed: "+err.Error(), http.StatusInternalServerError)

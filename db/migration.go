@@ -55,6 +55,7 @@ func Migrate(db *sql.DB) {
 				min_stock INTEGER NOT NULL DEFAULT 0,         		-- Minimal stok sebelum reorder
 				price INTEGER NOT NULL DEFAULT 0,             		-- Harga beli
 				price_sell INTEGER NOT NULL DEFAULT 0,        		-- Harga jual
+				profit_amount INTEGER NOT NULL,					    -- Jumlah keuntungan
 				expired_date TEXT,                            		-- Tanggal kadaluarsa (jika ada)
 				created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
 				updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
@@ -76,6 +77,7 @@ func Migrate(db *sql.DB) {
 					note TEXT, 										-- Catatan tambahan
 					received_by TEXT,								-- Nama penerima
 					expired_date TEXT,								-- Tanggal kadaluarsa
+					expired_status BOOLEAN DEFAULT FALSE,			-- Status kadaluarsa
 					
 					FOREIGN KEY(product_id) REFERENCES products(id) ON DELETE CASCADE
 				);`,

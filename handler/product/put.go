@@ -26,7 +26,7 @@ func UpdateProduct(db *sql.DB) http.HandlerFunc {
 			return
 		}
 
-		// Cek apakah SKU sudah dipakai produk lain (bukan yang sedang diupdate)
+		// Cek apakah SKU sudah dipakai produk lain
 		var existingID string
 		err := db.QueryRow("SELECT id FROM products WHERE sku = ? AND id != ?", input.Sku, id).Scan(&existingID)
 		if err != nil && err != sql.ErrNoRows {
@@ -38,32 +38,38 @@ func UpdateProduct(db *sql.DB) http.HandlerFunc {
 			return
 		}
 
-		// Eksekusi update
+		// Hitung ulang profit
+		profitAmount := input.PriceSell - input.Price
+		input.ProfitAmount = profitAmount
+
+		// Eksekusi update termasuk profit_amount
 		_, err = db.Exec(`
 			UPDATE products SET
 				sku = ?, name = ?, item_id = ?, unit_id = ?,
-				price = ?, price_sell = ?, min_stock = ?,
+				price = ?, price_sell = ?, profit_amount = ?, min_stock = ?,
 				updated_at = CURRENT_TIMESTAMP
 			WHERE id = ?`,
 			input.Sku, input.Name, input.ItemID, input.UnitID,
-			input.Price, input.PriceSell, input.MinStock, id,
+			input.Price, input.PriceSell, profitAmount, input.MinStock, id,
 		)
 		if err != nil {
 			http.Error(w, "Update failed: "+err.Error(), http.StatusInternalServerError)
 			return
 		}
 
+		// Response sukses
 		w.Header().Set("Content-Type", "application/json")
 		json.NewEncoder(w).Encode(map[string]interface{}{
 			"data": map[string]interface{}{
-				"id":         id,
-				"sku":        input.Sku,
-				"name":       input.Name,
-				"item_id":    input.ItemID,
-				"unit_id":    input.UnitID,
-				"price":      input.Price,
-				"price_sell": input.PriceSell,
-				"min_stock":  input.MinStock,
+				"id":            id,
+				"sku":           input.Sku,
+				"name":          input.Name,
+				"item_id":       input.ItemID,
+				"unit_id":       input.UnitID,
+				"price":         input.Price,
+				"price_sell":    input.PriceSell,
+				"profit_amount": input.ProfitAmount,
+				"min_stock":     input.MinStock,
 			},
 			"message": "Product updated successfully",
 		})
