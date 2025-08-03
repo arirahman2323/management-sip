@@ -7,6 +7,7 @@ import (
 	"os"
 	"time"
 
+	lowproductnotif "github.com/arirahman2323/managment-sip/handler/lowProductNotif"
 	"github.com/arirahman2323/managment-sip/model"
 	"github.com/golang-jwt/jwt/v5"
 	"golang.org/x/crypto/bcrypt"
@@ -54,13 +55,19 @@ func HandleLogin(db *sql.DB) http.HandlerFunc {
 			return
 		}
 
+		lowStockProducts, err := lowproductnotif.GetLowStockProducts(db)
+		if err != nil {
+			http.Error(w, "Gagal cek stok minimal: "+err.Error(), http.StatusInternalServerError)
+			return
+		}
 		// Kirim response
 		user.Password = "" // jangan kirim hash ke frontend
 		w.Header().Set("Content-Type", "application/json")
 		json.NewEncoder(w).Encode(map[string]interface{}{
-			"message": "Login success",
-			"user":    user,
-			"token":   tokenString,
+			"message":          "Login success",
+			"user":             user,
+			"token":            tokenString,
+			"lowStockProducts": lowStockProducts,
 		})
 	}
 }
