@@ -21,23 +21,22 @@ func GetExpiredStatus(db *sql.DB) ([]ExpiredProduct, error) {
 	// Step 2: Ambil semua data yang expired_status = TRUE
 	rows, err := db.Query(`
 		SELECT 
-			pi.product_id,
-			p.name,
-			pi.quantity,
-			ut.name AS unit_name,
-			pi.supplier,
-			pi.created_at,
-			pi.updated_at,
-			pi.note,
-			pi.received_by,
-			pi.expired_date,
-			pi.expired_status
+			pi.product_id,     -- 1
+			p.name,            -- 2 (ItemName)
+			pi.quantity,       -- 3
+			ut.name AS unit_name, -- 4 (UnitName)
+			pi.supplier,       -- 5
+			pi.created_at,     -- 6
+			pi.updated_at,     -- 7
+			pi.note,           -- 8
+			pi.received_by,    -- 9
+			pi.expired_date,   -- 10
+			pi.expired_status  -- 11
 		FROM products_in pi
 		JOIN products p ON pi.product_id = p.id
 		JOIN unit_types ut ON p.unit_id = ut.id
 		WHERE pi.expired_status = TRUE
 	`)
-
 	if err != nil {
 		return nil, err
 	}
@@ -48,16 +47,17 @@ func GetExpiredStatus(db *sql.DB) ([]ExpiredProduct, error) {
 	for rows.Next() {
 		var p ExpiredProduct
 		err := rows.Scan(
-			&p.ProductID,
-			&p.Quantity,
-			&p.Supplier,
-			&p.CreatedAt,
-			&p.UpdatedAt,
-			&p.Note,
-			&p.ReceivedBy,
-			&p.ExpiredDate,
-			&p.ExpiredStatus,
-			&p.ItemName,
+			&p.ProductID,     // 1
+			&p.ItemName,      // 2
+			&p.Quantity,      // 3
+			&p.UnitName,      // 4
+			&p.Supplier,      // 5
+			&p.CreatedAt,     // 6
+			&p.UpdatedAt,     // 7
+			&p.Note,          // 8
+			&p.ReceivedBy,    // 9
+			&p.ExpiredDate,   // 10
+			&p.ExpiredStatus, // 11
 		)
 		if err != nil {
 			log.Println("Error scanning expired product:", err)

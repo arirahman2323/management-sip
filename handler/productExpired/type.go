@@ -22,4 +22,5 @@ type ExpiredProduct struct {
 	ExpiredDate   string `json:"expired_date"`
 	ExpiredStatus bool   `json:"expired_status"`
 	ItemName      string `json:"item_name"`
+	UnitName      string `json:"unit_name"`
 }
