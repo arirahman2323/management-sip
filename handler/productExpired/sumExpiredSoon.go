@@ -13,9 +13,12 @@ func GetExpiringSoon(db *sql.DB) ([]ExpiredSoon, error) {
 			pi.quantity,
 			pi.supplier,
 			pi.updated_at,
-			pi.expired_date
+			pi.expired_date,
+			ut.name AS item_name
 		FROM products_in pi
 		JOIN products p ON pi.product_id = p.id
+		JOIN item_types ut ON p.item_id = ut.id
+
 		WHERE pi.expired_date IS NOT NULL
 	`
 
@@ -36,9 +39,10 @@ func GetExpiringSoon(db *sql.DB) ([]ExpiredSoon, error) {
 			supplier    string
 			updatedAt   string
 			expiredDate string
+			itemName    string
 		)
 
-		if err := rows.Scan(&productID, &productName, &quantity, &supplier, &updatedAt, &expiredDate); err != nil {
+		if err := rows.Scan(&productID, &productName, &quantity, &supplier, &updatedAt, &expiredDate, &itemName); err != nil {
 			return nil, err
 		}
 
@@ -56,6 +60,7 @@ func GetExpiringSoon(db *sql.DB) ([]ExpiredSoon, error) {
 				Supplier:    supplier,
 				UpdatedAt:   updatedAt,
 				ExpiredDate: expiredDate,
+				ItemName:    itemName,
 				Message:     "akan kedaluarsa",
 			})
 		}

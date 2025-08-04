@@ -7,6 +7,7 @@ type ExpiredSoon struct {
 	Supplier    string `json:"supplier"`
 	UpdatedAt   string `json:"updated_at"`
 	ExpiredDate string `json:"expired_date"`
+	ItemName    string `json:"unit_name"`
 	Message     string `json:"message"`
 }
 
