@@ -60,7 +60,7 @@ func GetExpiredStatus(db *sql.DB) ([]ExpiredProduct, error) {
 			&p.ExpiredStatus, // 11
 		)
 		if err != nil {
-			log.Println("Error scanning expired product:", err)
+			log.Println("Error scanning expired products:", err)
 			continue
 		}
 		expiredProducts = append(expiredProducts, p)
