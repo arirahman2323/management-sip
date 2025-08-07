@@ -31,9 +31,9 @@ const ProductTable = ({ title, subtitle, products, icon, detail, radiusColor }) 
           <h3 className="text-lg font-semibold">{title}</h3>
           <p className="text-sm text-gray-500">{subtitle}</p>
         </div>
-        <Link to={detail} className="ml-auto bg-blue-100 text-blue-500 font-semibold rounded-sm px-4 py-1 pt-2 text-sm cursor-pointer hover:border-2 hover:bg-white hover:text-blue-600 transition-colors duration-200 ease-in-out">
+        {/* <Link to={detail} className="ml-auto bg-blue-100 text-blue-500 font-semibold rounded-sm px-4 py-1 pt-2 text-sm cursor-pointer hover:border-2 hover:bg-white hover:text-blue-600 transition-colors duration-200 ease-in-out">
           Detail
-        </Link>
+        </Link> */}
       </div>
       <table className="w-full text-left">
         <thead className="border-b border-gray-100">
@@ -48,7 +48,7 @@ const ProductTable = ({ title, subtitle, products, icon, detail, radiusColor }) 
             <tr key={index} className="even:bg-gray-200">
               <td className="pr-1 pb-2 pt-2 pl-1.5">{product.name}</td>
               <td className="pr-1 pb-2 pt-2 pl-1.5">{formatDate(product.date)}</td>
-              <td className="pr-1 pb-2 pt-2 pl-1.5">{product.category}</td>
+              <td className="pr-1 pb-2 pt-2 pl-1.5">{product.item_name}</td>
             </tr>
           ))}
         </tbody>

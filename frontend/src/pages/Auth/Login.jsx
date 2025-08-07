@@ -1,15 +1,17 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import AuthLayout from "../../components/layouts/AuthLayout";
 import { Link, useNavigate } from "react-router-dom";
 import LogoAuth from "../../components/logo/BlueLogo";
 import axiosInstance from "../../utils/axiosInstance";
 import { API_PATHS } from "../../utils/apiPath";
 import toast from "react-hot-toast";
+import { NotificationContext } from "../../context/NotificationContext";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  const { setNotifications } = useContext(NotificationContext);
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -20,8 +22,14 @@ const Login = () => {
         password,
       });
 
-      const { token } = response.data;
+      const { token, lowStockProducts, expiringSoon } = response.data;
       localStorage.setItem("token", token);
+
+      setNotifications({
+        lowStockCount: lowStockProducts?.length || 0,
+        expiringSoonCount: expiringSoon?.length || 0,
+        expiringSoonList: expiringSoon || [],
+      });
 
       toast.success("Login berhasil!");
       navigate("/dashboard");
@@ -35,12 +43,8 @@ const Login = () => {
       <div className="w-full max-w-md space-y-8">
         <div>
           <LogoAuth className="justify-left" />
-          <h2 className="text-center text-3xl font-bold tracking-tight text-gray-900">
-            Masuk Aplikasi
-          </h2>
-          <p className="mt-2 text-center text-sm text-gray-600">
-            Masukkan Email dan Password untuk masuk.
-          </p>
+          <h2 className="text-center text-3xl font-bold tracking-tight text-gray-900">Masuk Aplikasi</h2>
+          <p className="mt-2 text-center text-sm text-gray-600">Masukkan Email dan Password untuk masuk.</p>
         </div>
 
         <form className="mt-8 space-y-6" onSubmit={handleLogin}>
@@ -79,24 +83,13 @@ const Login = () => {
 
           <div className="flex items-center justify-between">
             <div className="flex items-center">
-              <input
-                id="remember-me"
-                name="remember-me"
-                type="checkbox"
-                className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
-              />
-              <label
-                htmlFor="remember-me"
-                className="ml-2 block text-sm text-gray-900"
-              >
+              <input id="remember-me" name="remember-me" type="checkbox" className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" />
+              <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-900">
                 Ingatkan saya
               </label>
             </div>
             <div className="text-sm">
-              <a
-                href="#"
-                className="font-medium text-indigo-600 hover:text-indigo-500"
-              >
+              <a href="#" className="font-medium text-indigo-600 hover:text-indigo-500">
                 Lupa Password
               </a>
             </div>
@@ -114,10 +107,7 @@ const Login = () => {
 
         <p className="mt-2 text-center text-sm text-gray-600">
           Tidak Punya Akun?
-          <Link
-            to="/register"
-            className="ml-1 font-medium text-indigo-600 hover:text-indigo-500"
-          >
+          <Link to="/register" className="ml-1 font-medium text-indigo-600 hover:text-indigo-500">
             Klik disini untuk mendaftar.
           </Link>
         </p>

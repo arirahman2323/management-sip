@@ -12,28 +12,31 @@ import ProductOrder from "./pages/Admin/ProductOrder/Index";
 import ProductArrived from "./pages/Admin/ProductArrived/Index";
 import Logout from "./pages/Auth/Logout";
 import { Toaster } from "react-hot-toast";
+import { NotificationProvider } from "./context/NotificationContext";
 const App = () => {
   return (
     <div>
-      <Router>
-        <Routes>
-          {/* Auth */}
-          <Route path="/" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/logout" element={<Logout />} />
+      <NotificationProvider>
+        <Router>
+          <Routes>
+            {/* Auth */}
+            <Route path="/" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/logout" element={<Logout />} />
 
-          {/* Admin */}
-          <Route path="/dashboard" element={<Dashboard />}></Route>
-          <Route path="/product" element={<ProductIndex />}></Route>
-          <Route path="/product-in" element={<ProductIn />}></Route>
-          <Route path="/product-out" element={<ProductOut />}></Route>
-          <Route path="/report" element={<Report />}></Route>
-          <Route path="/product-will-expired" element={<ProductWillExpired />}></Route>
-          <Route path="/product-expired" element={<ProductExpired />}></Route>
-          <Route path="/product-order" element={<ProductOrder />}></Route>
-          <Route path="/product-arrived" element={<ProductArrived />}></Route>
-        </Routes>
-      </Router>
+            {/* Admin */}
+            <Route path="/dashboard" element={<Dashboard />}></Route>
+            <Route path="/product" element={<ProductIndex />}></Route>
+            <Route path="/product-in" element={<ProductIn />}></Route>
+            <Route path="/product-out" element={<ProductOut />}></Route>
+            <Route path="/report" element={<Report />}></Route>
+            <Route path="/product-will-expired" element={<ProductWillExpired />}></Route>
+            <Route path="/product-expired" element={<ProductExpired />}></Route>
+            <Route path="/product-order" element={<ProductOrder />}></Route>
+            <Route path="/product-arrived" element={<ProductArrived />}></Route>
+          </Routes>
+        </Router>
+      </NotificationProvider>
       <Toaster position="top-center" reverseOrder={false} />
     </div>
   );

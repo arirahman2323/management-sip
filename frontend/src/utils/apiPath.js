@@ -47,4 +47,10 @@ export const API_PATHS = {
   PRODUCT_EXPIRED: {
     GET_PRODUCT_EXPIRED: "/api/product-expired",
   },
+
+  REPORT: {
+    GET_REPORT_STOCK: (start, end) => `/api/reports/stock?start=${start}&end=${end}`,
+    GET_REPORT_IN: (start, end) => `/api/reports/product-in?start=${start}&end=${end}`,
+    GET_REPORT_OUT: (start, end) => `/api/reports/product-out?start=${start}&end=${end}`,
+  },
 };
