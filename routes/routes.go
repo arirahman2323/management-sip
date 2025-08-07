@@ -17,6 +17,8 @@ import (
 	"github.com/arirahman2323/managment-sip/handler/productIn"
 	productout "github.com/arirahman2323/managment-sip/handler/productOut"
 	inventoryreport "github.com/arirahman2323/managment-sip/handler/report/inventoryReport"
+	"github.com/arirahman2323/managment-sip/handler/report/productInReport"
+	"github.com/arirahman2323/managment-sip/handler/report/productOutReport"
 	"github.com/arirahman2323/managment-sip/handler/unitType"
 	"github.com/arirahman2323/managment-sip/handler/user"
 )
@@ -75,6 +77,8 @@ func SetupRoutes(db *sql.DB) http.Handler {
 
 	// Reports
 	protected.HandleFunc("/reports/stock", inventoryreport.GetInventoryReport(db)).Methods("GET")
+	protected.HandleFunc("/reports/product-in", productInReport.GetProductInReport(db)).Methods("GET")
+	protected.HandleFunc("/reports/product-out", productOutReport.GetProductOutReport(db)).Methods("GET")
 
 	return router
 }

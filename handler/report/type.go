@@ -18,3 +18,18 @@ type InventoryReportItem struct {
 	QuantityIn   int     `json:"quantity_in"`
 	QuantityOut  int     `json:"quantity_out"`
 }
+
+type InventoryReportProductIn struct {
+	ProductID   string `json:"product_id"`
+	Quantity    int    `json:"quantity"`
+	CreatedAt   string `json:"created_at"`
+	ProductName string `json:"product_name"`
+	ExpiredDate string `json:"expired_date"`
+}
+
+type InventoryReportProductOut struct {
+	ProductID   string `json:"product_id"`
+	Quantity    int    `json:"quantity"`
+	CreatedAt   string `json:"created_at"`
+	ProductName string `json:"product_name"`
+}
