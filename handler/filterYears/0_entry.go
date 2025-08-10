@@ -24,7 +24,7 @@ func GetFilterYearsHandler(db *sql.DB) http.HandlerFunc {
 
 		productOutMonthly, productOutTotal, err := QueryProductByYear(db, "products_out", year)
 		if err != nil {
-			http.Error(w, "Error querying products_out: "+err.Error(), http.StatusInternalServerError)
+			http.Error(w, "Error querying products out: "+err.Error(), http.StatusInternalServerError)
 			return
 		}
 
