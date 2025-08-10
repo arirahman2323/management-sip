@@ -1,19 +1,40 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Quagga from "quagga";
 import { XMarkIcon } from "@heroicons/react/24/solid";
 
 const BarcodeScanner = ({ isOpen, onClose, onScan }) => {
   const scannerRef = useRef(null);
+  const [cameras, setCameras] = useState([]);
+  const [selectedCamera, setSelectedCamera] = useState("");
 
   useEffect(() => {
+    // Ambil daftar kamera
+    navigator.mediaDevices
+      .enumerateDevices()
+      .then((devices) => {
+        const videoDevices = devices.filter((device) => device.kind === "videoinput");
+        setCameras(videoDevices);
+        if (videoDevices.length > 0) {
+          // Otomatis pilih kamera pertama (bisa jadi DroidCam kalau default)
+          setSelectedCamera(videoDevices[0].deviceId);
+        }
+      })
+      .catch((err) => {
+        console.error("Gagal mendapatkan daftar kamera:", err);
+      });
+  }, []);
+
+  useEffect(() => {
+    let isQuaggaInitialized = false;
     const handleDetection = (result) => {
       Quagga.offDetected(handleDetection);
       onScan(result.codeResult.code);
       Quagga.stop();
+      isQuaggaInitialized = false;
       onClose();
     };
 
-    if (isOpen) {
+    if (isOpen && selectedCamera) {
       Quagga.init(
         {
           inputStream: {
@@ -23,7 +44,7 @@ const BarcodeScanner = ({ isOpen, onClose, onScan }) => {
             constraints: {
               width: 480,
               height: 320,
-              facingMode: "environment",
+              deviceId: selectedCamera, // Kamera yang dipilih (bisa DroidCam)
             },
           },
           decoder: {
@@ -44,12 +65,12 @@ const BarcodeScanner = ({ isOpen, onClose, onScan }) => {
     }
 
     return () => {
-      if (Quagga.initialized) {
-        Quagga.offDetected(handleDetection);
+      if (isQuaggaInitialized) {
         Quagga.stop();
+        isQuaggaInitialized = false;
       }
     };
-  }, [isOpen, onClose, onScan]);
+  }, [isOpen, selectedCamera, onClose, onScan]);
 
   if (!isOpen) return null;
 
@@ -61,6 +82,17 @@ const BarcodeScanner = ({ isOpen, onClose, onScan }) => {
         <button onClick={onClose} className="absolute top-2 right-2 p-1 bg-white rounded-full hover:bg-gray-200 z-10">
           <XMarkIcon className="h-6 w-6 text-gray-700" />
         </button>
+
+        {/* Pilihan kamera */}
+        {cameras.length > 0 && (
+          <select className="border p-2 rounded w-full mb-3" value={selectedCamera} onChange={(e) => setSelectedCamera(e.target.value)}>
+            {cameras.map((cam, idx) => (
+              <option key={cam.deviceId} value={cam.deviceId}>
+                {cam.label || `Kamera ${idx + 1}`}
+              </option>
+            ))}
+          </select>
+        )}
 
         <div ref={scannerRef} className="w-full h-auto min-h-[240px]"></div>
       </div>

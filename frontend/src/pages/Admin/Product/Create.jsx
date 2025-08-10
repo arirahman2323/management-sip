@@ -16,7 +16,6 @@ const Create = ({ isOpen, onClose }) => {
     stock: 0,
     total_unit: 0,
     unit_price: 0,
-    expired_date: "",
   });
 
   const handleChange = (e) => {

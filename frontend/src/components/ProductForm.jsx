@@ -122,10 +122,10 @@ const ProductForm = ({ formData, onChange, onSubmit, onCancel }) => {
           </div>
         </div>
 
-        <div className="flex flex-col">
+        {/* <div className="flex flex-col">
           <label className="text-sm font-normal">Tanggal Expired</label>
           <input type="date" name="expired_date" value={formData.expired_date || ""} onChange={onChange} className="bg-gray-50 text-gray-500 text-sm p-3 rounded-lg focus:outline-gray-500" />
-        </div>
+        </div> */}
 
         <div className="flex justify-between gap-4 mt-4">
           <button type="button" onClick={onCancel} className="px-4 w-full py-2 border rounded-md hover:bg-gray-100 cursor-pointer">
