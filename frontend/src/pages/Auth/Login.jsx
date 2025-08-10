@@ -36,6 +36,7 @@ const Login = () => {
     } catch (error) {
       toast.error("Email atau password salah!");
       console.error("Login failed:", error);
+      navigate("/");
     }
   };
   return (
