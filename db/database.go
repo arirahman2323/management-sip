@@ -12,14 +12,3 @@ func Connect() *sql.DB {
 	}
 	return db
 }
-
-func Migrate(db *sql.DB) {
-	query := `CREATE TABLE IF NOT EXISTS users (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        name TEXT
-    )`
-	_, err := db.Exec(query)
-	if err != nil {
-		log.Fatal(err)
-	}
-}

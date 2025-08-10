@@ -9,7 +9,7 @@ import (
 )
 
 func getUsers(w http.ResponseWriter, db *sql.DB) {
-	rows, err := db.Query("SELECT id, name FROM users")
+	rows, err := db.Query("SELECT id, name, email, password FROM users")
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
@@ -19,10 +19,11 @@ func getUsers(w http.ResponseWriter, db *sql.DB) {
 	var users []model.User
 	for rows.Next() {
 		var u model.User
-		if err := rows.Scan(&u.ID, &u.Name); err != nil {
+		if err := rows.Scan(&u.ID, &u.Name, &u.Email, &u.Password); err != nil {
 			http.Error(w, err.Error(), http.StatusInternalServerError)
 			return
 		}
+		u.Password = "" // jangan kirim password ke frontend
 		users = append(users, u)
 	}
 
